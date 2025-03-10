@@ -23,7 +23,7 @@
     translate: 0 0;
     width: 524px;
     height: 126px;
-    align-items: center;
+    align-items: flex-start;
     background-image: url("project://database/Assets/UI/boton_01.png?fileID=2800000&guid=7e42dc12cd9b5da4fafa527628db6f15&type=3#boton_01");
     background-size: 100% 100%;
     color: rgb(255, 255, 255);
@@ -45,6 +45,8 @@
     background-position-x: center 0;
     background-position-y: center 0;
     -unity-font-style: normal;
+    top: auto;
+    align-content: flex-start;
 }
 
 .Button:hover {
@@ -76,4 +78,31 @@
     transition-duration: 0.2s;
     transition-timing-function: ease-in-out-bounce;
     scale: 1.7 1.7;
+}
+
+.textHeading {
+    font-size: 60px;
+    -unity-font-definition: url("project://database/Assets/Fonts/DePixelHalbfett.otf?fileID=12800000&guid=40bd7e91a4244024b85e8ee2cf82335f&type=3#DePixelHalbfett");
+    margin-top: 50px;
+    margin-bottom: 0;
+    margin-left: 50px;
+    -unity-font-style: bold;
+    color: rgb(222, 27, 33);
+}
+
+.textHeading2 {
+    margin-left: 50px;
+    margin-top: 50px;
+    font-size: 35px;
+    margin-right: 50px;
+    -unity-font-definition: url("project://database/Packages/com.unity.render-pipelines.core/Runtime/Debugging/Prefabs/Fonts/PerfectDOSVGA437.ttf?fileID=12800000&guid=74a5091d8707f334b9a5c31ef71a64ba&type=3#PerfectDOSVGA437");
+}
+
+.trophy:hover {
+    scale: 1.1 1.1;
+    transition-duration: 0.3s;
+    transition-timing-function: ease-out-back;
+}
+
+.trophy {
 }

@@ -1,0 +1,13 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI/main%20menu.uss?fileID=7433441132597879392&amp;guid=81fbc9ae817f53048a96bcfd19115a1a&amp;type=3#main menu" />
+    <ui:VisualElement name="menu" class="main" style="flex-grow: 1; height: 100px;">
+        <ui:VisualElement name="container" class="container" style="padding-top: 50px;">
+            <ui:VisualElement name="Background_UI" style="flex-grow: 1; background-image: resource(&apos;menu principal/backgorund_ui&apos;); width: 1172px; height: 767px; margin-top: 100px;">
+                <ui:Label text="LEADERBOARD" name="Leaderboard" class="textHeading" />
+                <ui:Label text="Know who are playing and learning new Crypto Content &#10;and get the best mark playing the game!" name="Leaderboard_text" class="textHeading2" />
+                <ui:VisualElement name="trophy" class="trophy" style="flex-grow: 1; background-image: resource(&apos;menu principal/trophy&apos;); background-size: 62% 102%; left: 775px; top: -377px; width: 584px; height: auto; min-height: auto; max-height: 223px;" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+        <ui:Button text="BACK&#10;" name="Back" class="Button" style="margin-top: 30px; align-items: flex-start; align-self: flex-start; align-content: flex-end; justify-content: flex-end; top: auto; margin-bottom: 100px; margin-left: 400px; margin-right: 0;" />
+    </ui:VisualElement>
+</ui:UXML>
