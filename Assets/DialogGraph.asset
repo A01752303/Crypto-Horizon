@@ -1,0 +1,145 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-9047234437181436405
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a32a464d8ccff4e40a60c45b40a1e648, type: 3}
+  m_Name: Sentence Node
+  m_EditorClassIdentifier: 
+  ConnectedNodesList: []
+  NodeGraph: {fileID: 11400000}
+  Rect:
+    serializedVersion: 2
+    x: 208.5
+    y: 79.5
+    width: 190
+    height: 135
+  IsDragging: 0
+  IsSelected: 0
+  _sentence:
+    CharacterName: CryptoGirl
+    Text: You need to find three keys to stop Decentralization from making us disappear.
+      Sounds weird, I know.
+    CharacterSprite: {fileID: 3616242810135980170, guid: 4e184961b4e77c346991aaef0fe99d3f, type: 3}
+  ParentNode: {fileID: 1999700244306807417}
+  ChildNode: {fileID: -3408065672674305988}
+  _isExternalFunc: 0
+  _externalFunctionName: 
+--- !u!114 &-3408065672674305988
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a32a464d8ccff4e40a60c45b40a1e648, type: 3}
+  m_Name: Sentence Node
+  m_EditorClassIdentifier: 
+  ConnectedNodesList: []
+  NodeGraph: {fileID: 11400000}
+  Rect:
+    serializedVersion: 2
+    x: 420.5
+    y: 100.5
+    width: 190
+    height: 135
+  IsDragging: 0
+  IsSelected: 1
+  _sentence:
+    CharacterName: CryptoGirl
+    Text: "Use WASD to move and explore, but trust me, don\u2019t run into the palm
+      trees... seriously."
+    CharacterSprite: {fileID: 3616242810135980170, guid: 4e184961b4e77c346991aaef0fe99d3f, type: 3}
+  ParentNode: {fileID: -9047234437181436405}
+  ChildNode: {fileID: 8990786629798918882}
+  _isExternalFunc: 0
+  _externalFunctionName: 
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 33f741ea10ebcf842a91c9b871dd032a, type: 3}
+  m_Name: DialogGraph
+  m_EditorClassIdentifier: 
+  NodesList:
+  - {fileID: -9047234437181436405}
+  - {fileID: -3408065672674305988}
+  - {fileID: 1999700244306807417}
+  - {fileID: 8990786629798918882}
+  NodeToDrawLineFrom: {fileID: 0}
+  LinePosition: {x: 0, y: 0}
+--- !u!114 &1999700244306807417
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a32a464d8ccff4e40a60c45b40a1e648, type: 3}
+  m_Name: Sentence Node
+  m_EditorClassIdentifier: 
+  ConnectedNodesList: []
+  NodeGraph: {fileID: 11400000}
+  Rect:
+    serializedVersion: 2
+    x: 0.5
+    y: 94.5
+    width: 190
+    height: 135
+  IsDragging: 0
+  IsSelected: 0
+  _sentence:
+    CharacterName: CryptoGirl
+    Text: Hey you! Welcome to Cryptoislands. We've got a big problem... and guess
+      who's fixing it?
+    CharacterSprite: {fileID: 3616242810135980170, guid: 4e184961b4e77c346991aaef0fe99d3f, type: 3}
+  ParentNode: {fileID: 0}
+  ChildNode: {fileID: -9047234437181436405}
+  _isExternalFunc: 0
+  _externalFunctionName: 
+--- !u!114 &8990786629798918882
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a32a464d8ccff4e40a60c45b40a1e648, type: 3}
+  m_Name: Sentence Node
+  m_EditorClassIdentifier: 
+  ConnectedNodesList: []
+  NodeGraph: {fileID: 11400000}
+  Rect:
+    serializedVersion: 2
+    x: 666
+    y: 68
+    width: 190
+    height: 135
+  IsDragging: 0
+  IsSelected: 0
+  _sentence:
+    CharacterName: CryptoGirl
+    Text: "Good luck with your adventure... we\u2019ll be here if you ever need help
+      again!!!"
+    CharacterSprite: {fileID: 3616242810135980170, guid: 4e184961b4e77c346991aaef0fe99d3f, type: 3}
+  ParentNode: {fileID: -3408065672674305988}
+  ChildNode: {fileID: 0}
+  _isExternalFunc: 0
+  _externalFunctionName: 
