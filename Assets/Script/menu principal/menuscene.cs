@@ -28,7 +28,6 @@ public class menuscene : MonoBehaviour
         if (transition != null)
         {
             transition.SetTrigger("Start");
-
             yield return new WaitForSeconds(transitionTime);
         }
 
