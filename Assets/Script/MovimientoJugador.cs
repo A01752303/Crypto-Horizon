@@ -6,13 +6,11 @@ public class MovimientoJugador : MonoBehaviour
     public float velocidad = 5f;
     private Vector2 input;
     public bool enMov => input.magnitude > 0f;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
     }
 
-    // Update is called once per frame
     void Update()
     {
         input.x = Input.GetAxis("Horizontal");
@@ -20,7 +18,7 @@ public class MovimientoJugador : MonoBehaviour
         input.Normalize();
     }
 
-    private void  FixedUpdate()
+    private void FixedUpdate()
     {
         rb.linearVelocity = input * velocidad;
     }

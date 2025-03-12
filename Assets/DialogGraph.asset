@@ -47,10 +47,10 @@ MonoBehaviour:
   NodeGraph: {fileID: 11400000}
   Rect:
     serializedVersion: 2
-    x: 460.25
-    y: 231.75
+    x: 439.25
+    y: 218.75
     width: 190
-    height: 135
+    height: 155
   IsDragging: 0
   IsSelected: 0
   _sentence:
@@ -60,8 +60,8 @@ MonoBehaviour:
     CharacterSprite: {fileID: 21300000, guid: 9bef32119a56ab345bb52c8f4b5cc78a, type: 3}
   ParentNode: {fileID: -9047234437181436405}
   ChildNode: {fileID: 8990786629798918882}
-  _isExternalFunc: 0
-  _externalFunctionName: 
+  _isExternalFunc: 1
+  _externalFunctionName: turnOnMoveCharacter
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -131,7 +131,7 @@ MonoBehaviour:
     x: 670.75
     y: 208.25
     width: 190
-    height: 135
+    height: 155
   IsDragging: 0
   IsSelected: 0
   _sentence:
@@ -141,5 +141,5 @@ MonoBehaviour:
     CharacterSprite: {fileID: 21300000, guid: 9bef32119a56ab345bb52c8f4b5cc78a, type: 3}
   ParentNode: {fileID: -3408065672674305988}
   ChildNode: {fileID: 0}
-  _isExternalFunc: 0
-  _externalFunctionName: 
+  _isExternalFunc: 1
+  _externalFunctionName: turnOnEKey
