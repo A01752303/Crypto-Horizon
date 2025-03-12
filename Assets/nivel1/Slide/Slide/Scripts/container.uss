@@ -1,0 +1,11 @@
+.container {
+    justify-content: flex-end;
+    align-self: auto;
+    align-content: flex-start;
+    align-items: flex-end;
+}
+
+.boton {
+    -unity-background-image-tint-color: rgb(249, 0, 0);
+    background-color: rgb(251, 0, 0);
+}

@@ -12,8 +12,11 @@ EditorBuildSettings:
     path: Assets/Scenes/Inicial map.unity
     guid: 0ac7023b6cef5394ea2fe0a07cb29014
   - enabled: 1
-    path: Assets/Scenes/Nivel 1.unity
-    guid: 728c27871c12761479253bf16c193a09
+    path: Assets/nivel1/Slide/Slide/Scene/Slide.unity
+    guid: f787683e03fc0be4a9f521ff68359287
+  - enabled: 1
+    path: Assets/nivel1/Quiz/Scene/GameScene.unity
+    guid: 9859f3e5e9176a448bccd997c2ffbf5a
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   m_UseUCBPForAssetBundles: 0
