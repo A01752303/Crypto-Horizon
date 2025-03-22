@@ -1,0 +1,104 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f611d797432e3f846885b2b12fde5f35, type: 3}
+  m_Name: BasicConceptsData
+  m_EditorClassIdentifier: 
+  categoryName: Blockchain and Cryptos Introduction
+  questions:
+  - questionInfo: What is Blockchain?
+    questionType: 0
+    questionImage: {fileID: 0}
+    audioClip: {fileID: 0}
+    videoClip: {fileID: 0}
+    options:
+    - A centralized database controlled by a single entity
+    - A decentralized and secure digital ledger that records transactions
+    - A cryptocurrency wallet
+    - "A traditional bank\u2019s transaction system"
+    correctAns: A decentralized and secure digital ledger that records transactions
+  - questionInfo: How are transactions verified in a blockchain network?
+    questionType: 0
+    questionImage: {fileID: 0}
+    audioClip: {fileID: 0}
+    videoClip: {fileID: 0}
+    options:
+    - By a central authority like a bank
+    - By miners or validators using consensus mechanisms
+    - By government agencies
+    - By random selection of users
+    correctAns: By miners or validators using consensus mechanisms
+  - questionInfo: What ensures that blockchain data cannot be altered or deleted?
+    questionType: 0
+    questionImage: {fileID: 0}
+    audioClip: {fileID: 0}
+    videoClip: {fileID: 0}
+    options:
+    - Its centralized control
+    - The ability to edit previous blocks
+    - Cryptographic hashing and immutability
+    - The presence of intermediaries
+    correctAns: Cryptographic hashing and immutability
+  - questionInfo: Which of the following is NOT a feature of blockchain?
+    questionType: 0
+    questionImage: {fileID: 0}
+    audioClip: {fileID: 0}
+    videoClip: {fileID: 0}
+    options:
+    - Transparency
+    - Decentralization
+    - High transaction fees
+    - Immutability
+    correctAns: High transaction fees
+  - questionInfo: What is cryptocurrency?
+    questionType: 0
+    questionImage: {fileID: 0}
+    audioClip: {fileID: 0}
+    videoClip: {fileID: 0}
+    options:
+    - A physical form of digital money
+    - A type of decentralized digital currency built on blockchain
+    - A government-issued currency
+    - A type of banking system
+    correctAns: A type of decentralized digital currency built on blockchain
+  - questionInfo: Which of the following is an example of a cryptocurrency?
+    questionType: 0
+    questionImage: {fileID: 0}
+    audioClip: {fileID: 0}
+    videoClip: {fileID: 0}
+    options:
+    - PayPal
+    - Bitcoin
+    - Apple Pay
+    - Visa
+    correctAns: Bitcoin
+  - questionInfo: What is the purpose of smart contracts in blockchain?
+    questionType: 0
+    questionImage: {fileID: 0}
+    audioClip: {fileID: 0}
+    videoClip: {fileID: 0}
+    options:
+    - To provide physical copies of agreements
+    - To execute transactions automatically when conditions are met
+    - To allow centralized organizations to manage contracts
+    - To store personal identification documents
+    correctAns: To execute transactions automatically when conditions are met
+  - questionInfo: Which industry can benefit from blockchain technology?
+    questionType: 0
+    questionImage: {fileID: 0}
+    audioClip: {fileID: 0}
+    videoClip: {fileID: 0}
+    options:
+    - Finance
+    - Supply Chain
+    - Gaming and Metaverse
+    - All of the above
+    correctAns: All of the above
