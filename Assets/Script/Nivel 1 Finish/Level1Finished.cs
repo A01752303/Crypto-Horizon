@@ -7,7 +7,7 @@ public class Level1Finished : MonoBehaviour
     public Animator transition;
     public void completeQuiz()
     {
-        gameManager.Instance.CompletarNivel1();
+        gameManager.Instance.CompletarNivel(1);
         StartCoroutine(LoadLevel(1));
     }
     IEnumerator LoadLevel(int levelIndex)

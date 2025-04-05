@@ -4,8 +4,9 @@ using TMPro;
 public class gameManager : MonoBehaviour
 {
     public static gameManager Instance;
-
     public bool nivel1Completo = false;
+    public bool nivel2Completo = false;
+    public bool nivel3Completo = false;
     public int llaves = 0;
 
     private void Awake()
@@ -22,9 +23,30 @@ public class gameManager : MonoBehaviour
         }
     }
 
-    public void CompletarNivel1()
+    public void CompletarNivel(int nivel)
     {
-        nivel1Completo = true;
+        if (llaves == nivel)
+        {
+            return;
+        }
+
+        switch (nivel)
+        {
+            case 1:
+                nivel1Completo = true;
+                break;
+            case 2:
+                nivel2Completo = true;
+                break;
+            case 3:
+                nivel3Completo = true;
+                break;
+            default:
+                Debug.LogWarning("Nivel inválido: " + nivel);
+                return;
+        }
+        
         llaves++;
     }
+
 }
