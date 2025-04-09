@@ -1,26 +1,38 @@
 using UnityEngine;
 
-public class dialogManager : MonoBehaviour
+public class DialogManager : MonoBehaviour
 {
-    public GameObject dialog; 
+    public GameObject dialog;
+    public DialogInicio dialogInicio;
     private const string DialogKey = "DialogShown";
+
     void Start()
     {
-        PlayerPrefs.DeleteAll();
-        PlayerPrefs.Save();
-
         if (PlayerPrefs.GetInt(DialogKey, 0) == 1)
         {
             Destroy(dialog);
+            dialogInicio.turnOnMoveCharacter();
+            dialogInicio.turnOnEKey(); 
         }
     }
 
     public void CloseDialog()
     {
-        PlayerPrefs.DeleteAll();
-        PlayerPrefs.Save();
         PlayerPrefs.SetInt(DialogKey, 1);
-        PlayerPrefs.Save();
+        PlayerPrefs.Save(); 
+
         Destroy(dialog);
+        dialogInicio.turnOnMoveCharacter(); 
+        dialogInicio.turnOnEKey(); 
     }
+
+    void OnApplicationQuit()
+    {
+        // Reiniciar los valores de PlayerPrefs al finalizar la simulación
+        PlayerPrefs.SetInt(DialogKey, 0); 
+        PlayerPrefs.Save(); 
+        Debug.Log("PlayerPrefs Reiniciado");
+
+    }
+
 }

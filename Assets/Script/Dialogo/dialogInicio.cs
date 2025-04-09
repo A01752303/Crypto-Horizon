@@ -25,7 +25,7 @@ public class DialogInicio : MonoBehaviour
         dialogBehavior.BindExternalFunction("turnOnEKey", turnOnEKey);
     }
 
-    private void turnOnMoveCharacter()
+    public void turnOnMoveCharacter()
     {
         if (moveCharacter != null)
         {
@@ -35,7 +35,7 @@ public class DialogInicio : MonoBehaviour
 
     }
 
-    private void turnOnEKey()
+    public void turnOnEKey()
     {
         if (enterE != null)
         {

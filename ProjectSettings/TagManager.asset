@@ -2,7 +2,7 @@
 %TAG !u! tag:unity3d.com,2011:
 --- !u!78 &1
 TagManager:
-  serializedVersion: 2
+  serializedVersion: 3
   tags: []
   layers:
   - Default
@@ -41,3 +41,38 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Agua
+    uniqueID: 636116473
+    locked: 0
+  - name: Islas Colliders
+    uniqueID: 2770422051
+    locked: 0
+  - name: Islas
+    uniqueID: 3723534753
+    locked: 0
+  - name: Caminos
+    uniqueID: 1961142345
+    locked: 0
+  - name: DecorFloor
+    uniqueID: 3501890489
+    locked: 0
+  - name: Decor
+    uniqueID: 3251551211
+    locked: 0
+  - name: Bridges
+    uniqueID: 1842604397
+    locked: 0
+  - name: Fences
+    uniqueID: 785706455
+    locked: 0
+  - name: Elements
+    uniqueID: 1598239579
+    locked: 0
+  - name: Banners
+    uniqueID: 2154870773
+    locked: 0
+  - name: Jugador
+    uniqueID: 2054096673
+    locked: 0
+  m_RenderingLayers:
+  - Default
