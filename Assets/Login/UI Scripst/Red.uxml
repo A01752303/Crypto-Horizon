@@ -1,0 +1,39 @@
+<engine:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:engine="UnityEngine.UIElements" xmlns:editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/Login/UI%20Scripst/Red.uss?fileID=7433441132597879392&amp;guid=f09ecfe4133594e428e4fc8f3ac0a4d4&amp;type=3#Red" />
+    <engine:VisualElement name="Contenedor" class="contenedor">
+        <engine:VisualElement name="PanelDerecho" class="panel-derecho" style="background-color: rgba(0, 102, 255, 0); width: 55%;">
+            <engine:VisualElement name="Login" enabled="true" class="captura-datos" style="-unity-background-image-tint-color: rgba(255, 255, 255, 0); width: 115%; border-left-color: rgba(0, 0, 0, 0); border-right-color: rgba(0, 0, 0, 0); border-top-color: rgba(0, 0, 0, 0); border-bottom-color: rgba(0, 0, 0, 0); align-self: center; display: flex;">
+                <engine:Label text="WELCOME TO CRYPTO HORIZON!!" name="Text" class="label-mensaje" style="color: rgb(96, 1, 1);" />
+                <engine:TextField label="Username:" name="LoginUser" />
+                <engine:TextField label="Password:" name="LoginPass" />
+                <engine:Button text="Login" name="LoginButton" class="botn-envia" />
+                <engine:Button text="Register" name="RegisterButton" class="botn-envia" />
+            </engine:VisualElement>
+            <engine:VisualElement name="Register" enabled="true" class="captura-datos" style="display: none;">
+                <engine:Label text="WELCOME  TO CRYPTO HORIZON" name="Text" class="label-mensaje" style="color: rgb(142, 6, 6);" />
+                <engine:TextField label="Username:" name="UserNameInput" />
+                <engine:TextField label="Email:" name="EmailInput" />
+                <engine:TextField label="Password:" name="Password" />
+                <engine:TextField label="Repeat Password:" name="Password" />
+                <engine:Label text="Date of Birth:" class="label-seccion" style="color: rgb(0, 0, 0);" />
+                <engine:VisualElement name="FechaContainer" style="flex-direction: row; gap: 10px;">
+                    <engine:DropdownField label="Day" name="DayDropdown" />
+                    <engine:DropdownField label="Month" name="MonthDropdown" />
+                    <engine:DropdownField label="Year" name="YearDropdown" />
+                </engine:VisualElement>
+                <engine:Label text="Gender:" class="label-seccion" style="color: rgb(0, 0, 0);" />
+                <engine:DropdownField name="GenderDropdown" />
+                <engine:Label text="Continent:" class="label-seccion" style="color: rgb(0, 0, 0);" />
+                <engine:DropdownField name="ContinentDropdown" />
+                <engine:Label text="Country:" class="label-seccion" style="color: rgb(0, 0, 0);" />
+                <engine:DropdownField name="CountryDropdown" />
+                <engine:TextField name="DeviceModelField" style="display: none;" />
+                <engine:TextField name="OSField" style="display: none;" />
+                <engine:TextField name="PlatformField" style="display: none;" />
+                <engine:TextField name="SystemLangField" style="display: none;" />
+                <engine:Button text="Login" name="LoginButton" class="botn-envia" />
+                <engine:Button text="Register" name="RegisterButton" class="botn-envia" />
+            </engine:VisualElement>
+        </engine:VisualElement>
+    </engine:VisualElement>
+</engine:UXML>

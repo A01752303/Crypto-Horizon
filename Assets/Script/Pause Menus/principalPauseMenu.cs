@@ -29,7 +29,7 @@ public class principalPauseMenu : MonoBehaviour
     public void Main()
     {
         Time.timeScale = 1f;
-        StartCoroutine(LoadLevel(0));
+        StartCoroutine(LoadLevel(1));
     }
 
     IEnumerator LoadLevel(int levelIndex)

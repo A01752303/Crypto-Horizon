@@ -1,0 +1,63 @@
+.contenedor {
+    width: 100%;
+    height: 100%;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-content: flex-start;
+}
+
+.panel-derecho {
+    width: 50%;
+    background-color: rgba(0, 102, 255, 0.67);
+    align-items: flex-start;
+    justify-content: center;
+}
+
+.captura-datos {
+    width: 100%;
+    max-height: 1080px;
+    align-items: stretch;
+    margin: 0;
+    padding: 40px;
+    overflow-y: auto;
+    -unity-font-definition: url("project://database/Assets/Scenes/nivel1/Quiz/Fonts/DePixelHalbfett.otf?fileID=12800000&guid=0136bac4a64705043ac3cd4514598e60&type=3#DePixelHalbfett");
+    font-size: 19px;
+}
+
+.botn-envia {
+    width: 380px;
+    align-self: center;
+    margin-top: 20px;
+    font-size: 30px;
+    background-image: url("project://database/Assets/UI/boton_normal.png?fileID=2800000&guid=17531bdb65d93984da660a07ebd65ad7&type=3#boton_normal");
+    background-size: 68% 89%;
+    height: 124px;
+    -unity-background-image-tint-color: rgb(255, 255, 255);
+    background-color: rgba(0, 0, 0, 0);
+    border-left-color: rgba(0, 0, 0, 0);
+    border-right-color: rgba(0, 0, 0, 0);
+    border-top-color: rgba(0, 0, 0, 0);
+    border-bottom-color: rgba(0, 0, 0, 0);
+    color: rgb(255, 255, 255);
+}
+
+.label-mensaje {
+    font-size: 18px;
+    color: white;
+    height: 30px;
+    margin-bottom: 10px;
+}
+
+.label-seccion {
+    font-size: 16px;
+    color: white;
+    margin-top: 12px;
+}
+
+#FechaContainer {
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    margin-top: 10px;
+    gap: 20px;
+}

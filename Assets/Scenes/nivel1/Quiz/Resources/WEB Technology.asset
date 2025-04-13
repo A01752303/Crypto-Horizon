@@ -1,0 +1,93 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f611d797432e3f846885b2b12fde5f35, type: 3}
+  m_Name: WEB Technology
+  m_EditorClassIdentifier: 
+  categoryName: WEB Technology
+  questions:
+  - questionInfo: What best describes Web 1.0?
+    questionType: 0
+    questionImage: {fileID: 0}
+    audioClip: {fileID: 0}
+    videoClip: {fileID: 0}
+    options:
+    - A 3D world
+    - A paper catalog
+    - A chat room
+    - A live stream
+    correctAns: A paper catalog
+  - questionInfo: What is a Web 1.0 feature?
+    questionType: 0
+    questionImage: {fileID: 0}
+    audioClip: {fileID: 0}
+    videoClip: {fileID: 0}
+    options:
+    - User content
+    - Static pages
+    - Smart AI
+    - Decentralized apps
+    correctAns: Static pages
+  - questionInfo: What changed in Web 2.0?
+    questionType: 0
+    questionImage: {fileID: 0}
+    audioClip: {fileID: 0}
+    videoClip: {fileID: 0}
+    options:
+    - Less content
+    - Full privacy
+    - Interactive websites
+    - Blockchain use
+    correctAns: Interactive websites
+  - questionInfo: 'A disadvantage of Web 2.0 is:'
+    questionType: 0
+    questionImage: {fileID: 0}
+    audioClip: {fileID: 0}
+    videoClip: {fileID: 0}
+    options:
+    - No social media
+    - No visuals
+    - Data privacy issues
+    - No ads
+    correctAns: Data privacy issues
+  - questionInfo: 'Web 3.0 includes:'
+    questionType: 0
+    questionImage: {fileID: 0}
+    audioClip: {fileID: 0}
+    videoClip: {fileID: 0}
+    options:
+    - Basic HTML
+    - Forums
+    - Blockchain
+    - Static sites
+    correctAns: Blockchain
+  - questionInfo: 'A Web 2.0 problem is:'
+    questionType: 0
+    questionImage: {fileID: 0}
+    audioClip: {fileID: 0}
+    videoClip: {fileID: 0}
+    options:
+    - No sharing
+    - Centralized power
+    - No design
+    - No access
+    correctAns: Centralized power
+  - questionInfo: 'Web 3.0 aims for:'
+    questionType: 0
+    questionImage: {fileID: 0}
+    audioClip: {fileID: 0}
+    videoClip: {fileID: 0}
+    options:
+    - One-way browsing
+    - Simpler code
+    - 'Smart and free web '
+    - Less personalization
+    correctAns: 'Smart and free web '

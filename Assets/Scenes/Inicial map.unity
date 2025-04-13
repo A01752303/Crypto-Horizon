@@ -129,7 +129,7 @@ GameObject:
   m_Component:
   - component: {fileID: 66587462}
   - component: {fileID: 66587464}
-  - component: {fileID: 66587463}
+  - component: {fileID: 66587465}
   m_Layer: 0
   m_Name: enter
   m_TagString: Untagged
@@ -153,19 +153,6 @@ Transform:
   - {fileID: 479934895}
   m_Father: {fileID: 1566147592}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &66587463
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 66587461}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e62805d2bcda2064ea066b8498ae7d5b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  enterButton: {fileID: 479934894}
 --- !u!61 &66587464
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -212,6 +199,20 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1.255661, y: 1.2077245}
   m_EdgeRadius: 0
+--- !u!114 &66587465
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 66587461}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 456d6a207b7dcc948865728a09a0c480, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  transition: {fileID: 1814986353}
+  enterButton: {fileID: 479934894}
 --- !u!1 &91148344 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5284883340169072326, guid: 0e57b26948e09b14fb61c60063193c16, type: 3}

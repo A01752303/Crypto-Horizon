@@ -18,7 +18,7 @@ public class updateKeyCountUI : MonoBehaviour
         }
     }
 
-    private void UpdateKeyCount()
+    public void UpdateKeyCount()
     {
         if (countText != null)
         {

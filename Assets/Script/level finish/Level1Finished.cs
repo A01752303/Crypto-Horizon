@@ -8,7 +8,19 @@ public class Level1Finished : MonoBehaviour
     public void completeQuiz()
     {
         gameManager.Instance.CompletarNivel(1);
-        StartCoroutine(LoadLevel(1));
+        StartCoroutine(LoadLevel(2));
+    }
+
+    public void completeQuiz2()
+    {
+        gameManager.Instance.CompletarNivel(2);
+        StartCoroutine(LoadLevel(2));
+    }
+
+    public void completeQuiz3()
+    {
+        gameManager.Instance.CompletarNivel(3);
+        StartCoroutine(LoadLevel(2));
     }
     IEnumerator LoadLevel(int levelIndex)
     {

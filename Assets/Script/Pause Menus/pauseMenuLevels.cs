@@ -26,13 +26,13 @@ public class pauseMenuLevels : MonoBehaviour
     public void BackToIslands()
     {
         Time.timeScale = 1f;
-        StartCoroutine(LoadLevel(1));
+        StartCoroutine(LoadLevel(2));
     }
 
     public void Main()
     {
         Time.timeScale = 1f;
-        StartCoroutine(LoadLevel(0));
+        StartCoroutine(LoadLevel(1));
     }
 
     IEnumerator LoadLevel(int levelIndex)
