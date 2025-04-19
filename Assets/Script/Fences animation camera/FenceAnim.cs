@@ -3,9 +3,11 @@ using System.Collections;
 
 public class FenceAnim : MonoBehaviour
 {
-    public Animator fence;
+    public Animator fence1;
     public Animator flash;
-    public GameObject fenceObject;
+    public GameObject fenceObject1;
+    public Animator fence2;
+    public GameObject fenceObject2;
     public GameObject cinemachine;
     public GameObject camera2;
     public GameObject camera3;
@@ -14,19 +16,28 @@ public class FenceAnim : MonoBehaviour
 
     void Start()
     {
-        // Buscar el gameManager en la escena
         gameManager = FindObjectOfType<gameManager>();
+
+        // Revisar estado guardado de destrucción
+        bool fence1Destruida = PlayerPrefs.GetInt("fence1Destruida", 0) == 1;
+        bool fence2Destruida = PlayerPrefs.GetInt("fence2Destruida", 0) == 1;
+
+        // Si ya estaba destruida, ocultarla
+        if (fence1Destruida && fenceObject1 != null)
+            fenceObject1.SetActive(false);
+
+        if (fence2Destruida && fenceObject2 != null)
+            fenceObject2.SetActive(false);
 
         if (gameManager != null)
         {
-            // Si se encuentra el gameManager, realiza la lógica
-            if (gameManager.nivel1Completo)
+            if (gameManager.nivel1Completo && !gameManager.nivel2Completo && !fence1Destruida)
             {
-                StartCoroutine(CambiarCamarasConDelay(1.5f, cinemachine, camera2, camera3, 1));
+                StartCoroutine(CambiarCamarasConDelay(1.5f, 1));
             }
-            else if (gameManager.nivel1Completo && gameManager.nivel2Completo)
+            else if (gameManager.nivel1Completo && gameManager.nivel2Completo && !fence2Destruida)
             {
-                StartCoroutine(CambiarCamarasConDelay(1.5f, cinemachine, camera2, camera3, 2));
+                StartCoroutine(CambiarCamarasConDelay(1.5f, 2));
             }
         }
         else
@@ -35,53 +46,52 @@ public class FenceAnim : MonoBehaviour
         }
     }
 
-    // Corutina que cambia las cámaras después de un retraso
-    private IEnumerator CambiarCamarasConDelay(float delayTime, GameObject cinemachine, GameObject camera2, GameObject camera3, int nivel)
+    private IEnumerator CambiarCamarasConDelay(float delayTime, int nivel)
     {
-        // Esperar el tiempo especificado
         yield return new WaitForSeconds(delayTime);
 
-        if(nivel == 1)
-        {
-            // Cambiar las cámaras después del retraso
-            cinemachine.SetActive(false);
-            camera2.SetActive(true);
-            camera3.SetActive(false);
-        }
-        else if (nivel == 2)
-        {
-            // Cambiar las cámaras después del retraso
-            cinemachine.SetActive(false);
-            camera2.SetActive(false);
-            camera3.SetActive(true);
-        }
+        // Cambiar cámaras
+        cinemachine.SetActive(false);
+        camera2.SetActive(nivel == 1);
+        camera3.SetActive(nivel == 2);
 
         yield return new WaitForSeconds(2f);
 
-        AnimationFence();
+        AnimationFence(nivel);
+
         yield return new WaitForSeconds(1f);
 
-        // Destruit cerca
-        if (fenceObject != null)
+        // Ocultar y marcar como destruida
+        if (nivel == 1 && fenceObject1 != null)
         {
-            Destroy(fenceObject);
+            fenceObject1.SetActive(false);
+            PlayerPrefs.SetInt("fence1Destruida", 1);
         }
-        else
+        else if (nivel == 2 && fenceObject2 != null)
         {
-            Debug.LogError("Objeto de la cerca no encontrado.");
+            fenceObject2.SetActive(false);
+            PlayerPrefs.SetInt("fence2Destruida", 1);
         }
 
+        PlayerPrefs.Save(); // Guardar cambios en disco
+
         yield return new WaitForSeconds(3f);
-    
-        // Cambiar las cámaras después del retraso
+
+        // Restaurar cámara original
         cinemachine.SetActive(true);
         camera2.SetActive(false);
         camera3.SetActive(false);
     }
 
-    private void AnimationFence()
+    private void AnimationFence(int nivel)
     {
-        // Iniciar la animación de la cerca
+        bool yaDestruida = (nivel == 1 && PlayerPrefs.GetInt("fence1Destruida", 0) == 1) ||
+                           (nivel == 2 && PlayerPrefs.GetInt("fence2Destruida", 0) == 1);
+
+        if (yaDestruida) return;
+
+        Animator fence = (nivel == 1) ? fence1 : fence2;
+
         if (fence != null)
         {
             fence.SetTrigger("Startfence");
@@ -91,7 +101,6 @@ public class FenceAnim : MonoBehaviour
             Debug.LogError("Animator de la cerca no encontrado.");
         }
 
-        // Iniciar la animación del flash
         if (flash != null)
         {
             flash.SetTrigger("Startflash");
@@ -100,5 +109,18 @@ public class FenceAnim : MonoBehaviour
         {
             Debug.LogError("Animator del flash no encontrado.");
         }
+    }
+
+    // Método para restablecer los valores cuando termina la simulación
+    private void OnApplicationQuit()
+    {
+        // Restablecer los valores de PlayerPrefs a su estado por defecto
+        PlayerPrefs.SetInt("fence1Destruida", 0);
+        PlayerPrefs.SetInt("fence2Destruida", 0);
+
+        // Asegúrate de guardar los cambios
+        PlayerPrefs.Save();
+
+        Debug.Log("Valores de PlayerPrefs restablecidos a los valores por defecto.");
     }
 }
