@@ -1,13 +1,14 @@
 <engine:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:engine="UnityEngine.UIElements" xmlns:editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
-    <Style src="project://database/Assets/Login/UI%20Scripst/Red.uss?fileID=7433441132597879392&amp;guid=f09ecfe4133594e428e4fc8f3ac0a4d4&amp;type=3#Red" />
+    <Style src="project://database/Assets/Scenes/Login/UI%20Scripst/Red.uss?fileID=7433441132597879392&amp;guid=f09ecfe4133594e428e4fc8f3ac0a4d4&amp;type=3#Red" />
     <engine:VisualElement name="Contenedor" class="contenedor">
         <engine:VisualElement name="PanelDerecho" class="panel-derecho" style="background-color: rgba(0, 102, 255, 0); width: 55%;">
-            <engine:VisualElement name="Login" enabled="true" class="captura-datos" style="-unity-background-image-tint-color: rgba(255, 255, 255, 0); width: 115%; border-left-color: rgba(0, 0, 0, 0); border-right-color: rgba(0, 0, 0, 0); border-top-color: rgba(0, 0, 0, 0); border-bottom-color: rgba(0, 0, 0, 0); align-self: center; display: flex;">
-                <engine:Label text="WELCOME TO CRYPTO HORIZON!!" name="Text" class="label-mensaje" style="color: rgb(96, 1, 1);" />
-                <engine:TextField label="Username:" name="LoginUser" />
-                <engine:TextField label="Password:" name="LoginPass" />
-                <engine:Button text="Login" name="LoginButton" class="botn-envia" />
-                <engine:Button text="Register" name="RegisterButton" class="botn-envia" />
+            <engine:VisualElement name="Login" enabled="true" class="captura-datos" style="-unity-background-image-tint-color: rgba(255, 255, 255, 0); width: 86%; border-left-color: rgba(0, 0, 0, 0); border-right-color: rgba(0, 0, 0, 0); border-top-color: rgba(0, 0, 0, 0); border-bottom-color: rgba(0, 0, 0, 0); align-self: center; display: flex;">
+                <engine:VisualElement style="flex-grow: 1; background-image: resource(&apos;menu principal/title&apos;); height: 116px;" />
+                <engine:Label name="Text" class="label-mensaje" style="color: rgb(96, 1, 1);" />
+                <engine:TextField label="Username:" name="LoginUser" style="font-size: 42px;" />
+                <engine:TextField label="Password:" name="LoginPass" style="font-size: 42px;" />
+                <engine:Button text="LOGIN" name="LoginButton" class="botn-envia" style="left: -152px; width: 365px; height: 123px;" />
+                <engine:Button text="REGISTER" name="RegisterButton" class="botn-envia" style="top: -142px; left: 147px; width: 369px; height: 121px;" />
             </engine:VisualElement>
             <engine:VisualElement name="Register" enabled="true" class="captura-datos" style="display: none;">
                 <engine:Label text="WELCOME  TO CRYPTO HORIZON" name="Text" class="label-mensaje" style="color: rgb(142, 6, 6);" />
