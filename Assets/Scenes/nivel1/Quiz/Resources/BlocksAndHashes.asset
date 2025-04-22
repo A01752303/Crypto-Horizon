@@ -1,0 +1,126 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f611d797432e3f846885b2b12fde5f35, type: 3}
+  m_Name: BlocksAndHashes
+  m_EditorClassIdentifier: 
+  categoryName: Blocks and hashes
+  questions:
+  - questionInfo: What is a blockchain?
+    questionType: 0
+    questionImage: {fileID: 0}
+    audioClip: {fileID: 0}
+    videoClip: {fileID: 0}
+    options:
+    - A messaging app
+    - A digital ledger
+    - A video platform
+    - A search engine
+    correctAns: A digital ledger
+  - questionInfo: What connects the blocks together?
+    questionType: 0
+    questionImage: {fileID: 0}
+    audioClip: {fileID: 0}
+    videoClip: {fileID: 0}
+    options:
+    - Email links
+    - Passwords
+    - Hashes
+    - Time zones
+    correctAns: Hashes
+  - questionInfo: What changed in Web 2.0?
+    questionType: 0
+    questionImage: {fileID: 0}
+    audioClip: {fileID: 0}
+    videoClip: {fileID: 0}
+    options:
+    - What is stored in a block?
+    - Usernames
+    - Just one number
+    - Data, hash, and previous hash
+    correctAns: Data, hash, and previous hash
+  - questionInfo: What happens if block data changes?
+    questionType: 0
+    questionImage: {fileID: 0}
+    audioClip: {fileID: 0}
+    videoClip: {fileID: 0}
+    options:
+    - Nothing
+    - Hash stays the same
+    - Hash changes
+    - Block disappears
+    correctAns: Hash changes
+  - questionInfo: What is a hash?
+    questionType: 0
+    questionImage: {fileID: 0}
+    audioClip: {fileID: 0}
+    videoClip: {fileID: 0}
+    options:
+    - A random number
+    - A group of numbers
+    - A game
+    - A unique code
+    correctAns: A unique code
+  - questionInfo: Why is the previous hash important?
+    questionType: 0
+    questionImage: {fileID: 0}
+    audioClip: {fileID: 0}
+    videoClip: {fileID: 0}
+    options:
+    - It helps search faster
+    - It connects blocks
+    - It stores user data
+    - It shows file size
+    correctAns: It connects blocks
+  - questionInfo: What happens if a block is hacked?
+    questionType: 0
+    questionImage: {fileID: 0}
+    audioClip: {fileID: 0}
+    videoClip: {fileID: 0}
+    options:
+    - The whole chain breaks
+    - It fixes itself
+    - Chain stays safe
+    - Only that block changes
+    correctAns: The whole chain breaks
+  - questionInfo: 'Who verifies new blocks? '
+    questionType: 0
+    questionImage: {fileID: 0}
+    audioClip: {fileID: 0}
+    videoClip: {fileID: 0}
+    options:
+    - The whole network
+    - A central bank
+    - Only one server
+    - A random user
+    correctAns: The whole network
+  - questionInfo: What is one key feature of blockchain?
+    questionType: 0
+    questionImage: {fileID: 0}
+    audioClip: {fileID: 0}
+    videoClip: {fileID: 0}
+    options:
+    - It's private
+    - "It\u2019s centralized"
+    - "It\u2019s slow"
+    - "It\u2019s transparent"
+    correctAns: "It\u2019s transparent"
+  - questionInfo: Why is blockchain secure?
+    questionType: 0
+    questionImage: {fileID: 0}
+    audioClip: {fileID: 0}
+    videoClip: {fileID: 0}
+    options:
+    - "It\u2019s hidden"
+    - It's on paper
+    - It uses cryptography and decentralization
+    - "It\u2019s password protected"
+    correctAns: It uses cryptography and decentralization

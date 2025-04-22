@@ -25,13 +25,13 @@
 }
 
 .botn-envia {
-    width: 380px;
+    width: auto;
     align-self: center;
-    margin-top: 20px;
+    margin-top: 32px;
     font-size: 30px;
     background-image: url("project://database/Assets/UI/boton_normal.png?fileID=2800000&guid=17531bdb65d93984da660a07ebd65ad7&type=3#boton_normal");
     background-size: 68% 89%;
-    height: 124px;
+    height: auto;
     -unity-background-image-tint-color: rgb(255, 255, 255);
     background-color: rgba(0, 0, 0, 0);
     border-left-color: rgba(0, 0, 0, 0);
@@ -46,6 +46,7 @@
     color: white;
     height: 30px;
     margin-bottom: 10px;
+    align-self: center;
 }
 
 .label-seccion {
@@ -60,4 +61,151 @@
     align-items: center;
     margin-top: 10px;
     gap: 20px;
+}
+
+#Contenedor > #PanelDerecho > #Register > #UserNameInput > #unity-text-input {
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+    -unity-background-image-tint-color: rgb(255, 255, 255);
+    background-color: rgba(255, 255, 255, 0.63);
+    border-left-color: rgba(0, 0, 0, 0);
+    border-right-color: rgba(0, 0, 0, 0);
+    border-top-color: rgba(0, 0, 0, 0);
+    border-bottom-color: rgba(0, 0, 0, 0);
+}
+
+#Contenedor > #PanelDerecho > #Register > #EmailInput > #unity-text-input {
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+    background-color: rgba(255, 255, 255, 0.63);
+    border-left-color: rgba(0, 0, 0, 0);
+    border-right-color: rgba(0, 0, 0, 0);
+    border-top-color: rgba(0, 0, 0, 0);
+    border-bottom-color: rgba(0, 0, 0, 0);
+}
+
+#Contenedor > #PanelDerecho > #Register > #Password > #unity-text-input {
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+    background-color: rgba(255, 255, 255, 0.63);
+    border-left-color: rgba(0, 0, 0, 0);
+    border-right-color: rgba(0, 0, 0, 0);
+    border-top-color: rgba(0, 0, 0, 0);
+    border-bottom-color: rgba(0, 0, 0, 0);
+}
+
+#Contenedor > #PanelDerecho > #Register > #GenderDropdown > .unity-popup-field__input {
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+    background-color: rgba(255, 255, 255, 0.63);
+    border-left-color: rgba(255, 255, 255, 0);
+    border-right-color: rgba(255, 255, 255, 0);
+    border-top-color: rgba(255, 255, 255, 0);
+    border-bottom-color: rgba(255, 255, 255, 0);
+}
+
+#Contenedor > #PanelDerecho > #Register > #ContinentDropdown > .unity-popup-field__input {
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+    background-color: rgba(255, 255, 255, 0.63);
+    border-left-color: rgba(255, 255, 255, 0);
+    border-right-color: rgba(255, 255, 255, 0);
+    border-top-color: rgba(255, 255, 255, 0);
+    border-bottom-color: rgba(255, 255, 255, 0);
+}
+
+#Contenedor > #PanelDerecho > #Register > #CountryDropdown > .unity-popup-field__input {
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+    background-color: rgba(255, 255, 255, 0.63);
+    border-left-color: rgba(0, 0, 0, 0);
+    border-right-color: rgba(0, 0, 0, 0);
+    border-top-color: rgba(0, 0, 0, 0);
+    border-bottom-color: rgba(0, 0, 0, 0);
+}
+
+#Contenedor > #PanelDerecho > #Register > .label-seccion > #FechaContainer > #DayDropdown > .unity-popup-field__input {
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+    background-color: rgba(255, 255, 255, 0.63);
+    border-left-color: rgba(0, 0, 0, 0);
+    border-right-color: rgba(0, 0, 0, 0);
+    border-top-color: rgba(0, 0, 0, 0);
+    border-bottom-color: rgba(0, 0, 0, 0);
+}
+
+#Contenedor > #PanelDerecho > #Register > .label-seccion > #FechaContainer > #MonthDropdown > .unity-popup-field__input {
+    background-color: rgba(255, 255, 255, 0.63);
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+}
+
+#Contenedor > #PanelDerecho > #Register > .label-seccion > #FechaContainer > #YearDropdown > .unity-popup-field__input {
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+    background-color: rgba(255, 255, 255, 0.63);
+    border-left-color: rgba(255, 255, 255, 0);
+    border-right-color: rgba(255, 255, 255, 0);
+    border-top-color: rgba(255, 255, 255, 0);
+    border-bottom-color: rgba(255, 255, 255, 0);
+}
+
+#Contenedor > #PanelDerecho > #Login > #LoginUser > #unity-text-input {
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+    background-color: rgba(255, 255, 255, 0.63);
+    border-left-color: rgb(255, 0, 0);
+    border-right-color: rgb(255, 0, 0);
+    border-top-color: rgb(255, 0, 0);
+    border-bottom-color: rgb(255, 0, 0);
+    border-top-width: 3px;
+    border-right-width: 3px;
+    border-bottom-width: 3px;
+    border-left-width: 3px;
+}
+
+#Contenedor > #PanelDerecho > #Login > #LoginPass > #unity-text-input {
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+    background-color: rgba(255, 255, 255, 0.63);
+    border-top-width: 3px;
+    border-right-width: 3px;
+    border-bottom-width: 3px;
+    border-left-width: 3px;
+    border-left-color: rgb(255, 0, 0);
+    border-right-color: rgb(255, 0, 0);
+    border-top-color: rgb(255, 0, 0);
+    border-bottom-color: rgb(255, 0, 0);
+}
+
+.botn-envia:hover {
+    background-image: url("project://database/Assets/UI/boton_hover.png?fileID=2800000&guid=35d10a387e525b64cb108c8c0e1affbb&type=3#boton_hover");
+    color: rgb(180, 180, 180);
+}
+
+.botn-envia:active {
+    background-image: url("project://database/Assets/UI/boton_pressed.png?fileID=2800000&guid=5593a4c5a649bb44292a1ba12367e01d&type=3#boton_pressed");
+    color: rgb(0, 0, 0);
 }

@@ -1399,13 +1399,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7127478092897854479, guid: 653293d525510734182b0da626086bfd, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 653293d525510734182b0da626086bfd, type: 3}
+--- !u!95 &631511839 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 4291188866957293252, guid: 653293d525510734182b0da626086bfd, type: 3}
+  m_PrefabInstance: {fileID: 631511838}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &686973209
 GameObject:
   m_ObjectHideFlags: 0
@@ -1550,6 +1555,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1946745656369564531, guid: 8632fbbb020d0ff4bae64a16dfa71f8d, type: 3}
+      propertyPath: transition
+      value: 
+      objectReference: {fileID: 631511839}
     - target: {fileID: 2948647180022901335, guid: 8632fbbb020d0ff4bae64a16dfa71f8d, type: 3}
       propertyPath: m_Name
       value: UI
@@ -1642,11 +1651,33 @@ PrefabInstance:
       propertyPath: m_SortingOrder
       value: 2
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8365893706667857355, guid: 8632fbbb020d0ff4bae64a16dfa71f8d, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 2948647180022901335, guid: 8632fbbb020d0ff4bae64a16dfa71f8d, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 851784367}
   m_SourcePrefab: {fileID: 100100000, guid: 8632fbbb020d0ff4bae64a16dfa71f8d, type: 3}
+--- !u!1 &851784366 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2948647180022901335, guid: 8632fbbb020d0ff4bae64a16dfa71f8d, type: 3}
+  m_PrefabInstance: {fileID: 851784365}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &851784367
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 851784366}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8932b375fb6e57f4a95a53c6fc28ec10, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  transition: {fileID: 631511839}
 --- !u!1 &911622403
 GameObject:
   m_ObjectHideFlags: 0
@@ -2080,7 +2111,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1068390245}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 851784367}
+        m_TargetAssemblyTypeName: menuscene, Assembly-CSharp
+        m_MethodName: play
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1068390245
 MonoBehaviour:
   m_ObjectHideFlags: 0

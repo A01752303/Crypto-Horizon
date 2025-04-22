@@ -19,27 +19,32 @@ public class QuizGameUI : MonoBehaviour
     [SerializeField] private AudioSource questionAudio;             
     [SerializeField] private Text questionInfoText;                 
     [SerializeField] private List<Button> options;   
+    [SerializeField] private int optionFontSize = 24;               // Tamaño de texto de las opciones
     public Animator transition;    
 
+    [SerializeField] private Text questionCounterText;              // NUEVO: Texto para mostrar el contador de preguntas tipo "1/10"
 #pragma warning restore 649
 
     private float audioLength;          
     private Question question;          
     private bool answered = false;      
-    public Text TimerText { get => timerText; }                 
+
+    public Text TimerText { get => timerText; }                  
     public Text ScoreText { get => scoreText; }               
     public GameObject GameOverPanel { get => gameOverPanel; }         
-    public GameObject WinScreenPanel { get => winScreenPanel; }   
+    public GameObject WinScreenPanel { get => winScreenPanel; }
+    public Text QuestionCounterText { get => questionCounterText; }  // NUEVO: Propiedad para acceder desde QuizManager
 
     private void Start()
     {
-           for (int i = 0; i < options.Count; i++)
+        for (int i = 0; i < options.Count; i++)
         {
             Button localBtn = options[i];
             localBtn.onClick.AddListener(() => OnClick(localBtn));
         }
         CreateCategoryButtons();
     }
+
     public void SetQuestion(Question question)
     {
         this.question = question;
@@ -69,7 +74,7 @@ public class QuizGameUI : MonoBehaviour
                 questionImg.transform.gameObject.SetActive(false);          
                 questionAudio.transform.gameObject.SetActive(false);        
                 questionVideo.clip = question.videoClip;                  
-                questionVideo.Play();                                   
+                questionVideo.Play();                                      
                 break;
         }
         questionInfoText.text = question.questionInfo;                    
@@ -77,16 +82,19 @@ public class QuizGameUI : MonoBehaviour
 
         for (int i = 0; i < options.Count; i++)
         {
-            options[i].GetComponentInChildren<Text>().text = ansOptions[i];
+            options[i].GetComponentInChildren<Text>().text = $"{(char)('A' + i)}) {ansOptions[i]}";
+            options[i].GetComponentInChildren<Text>().fontSize = optionFontSize;
             options[i].name = ansOptions[i];    
             options[i].image.color = normalCol; 
         }
         answered = false;                       
     }
+
     public void ReduceLife(int remainingLife)
     {
         lifeImageList[remainingLife].color = Color.red;
     }
+
     IEnumerator PlayAudio()
     {
         if (question.questionType == QuestionType.AUDIO)
@@ -101,6 +109,7 @@ public class QuizGameUI : MonoBehaviour
             yield return null;
         }
     }
+
     void OnClick(Button btn)
     {
         if (quizManager.GameStatus == GameStatus.PLAYING)
@@ -120,6 +129,7 @@ public class QuizGameUI : MonoBehaviour
             }
         }
     }
+
     void CreateCategoryButtons()
     {
         for (int i = 0; i < quizManager.QuizData.Count; i++)
@@ -130,12 +140,14 @@ public class QuizGameUI : MonoBehaviour
             categoryBtn.Btn.onClick.AddListener(() => CategoryBtn(index, quizManager.QuizData[index].categoryName));
         }
     }
+
     private void CategoryBtn(int index, string category)
     {
         quizManager.StartGame(index, category); 
         mainMenu.SetActive(false);              
         gamePanel.SetActive(true);             
     }
+
     IEnumerator BlinkImg(Image img)
     {
         for (int i = 0; i < 2; i++)
@@ -146,6 +158,7 @@ public class QuizGameUI : MonoBehaviour
             yield return new WaitForSeconds(0.1f);
         }
     }
+
     public void RestryButton()
     {
         StartCoroutine(LoadLevel(SceneManager.GetActiveScene().buildIndex));
@@ -157,5 +170,4 @@ public class QuizGameUI : MonoBehaviour
         yield return new WaitForSeconds(1f);
         SceneManager.LoadScene(levelIndex);
     }
-
 }

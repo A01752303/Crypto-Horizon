@@ -6,7 +6,7 @@ using UnityEngine;
 public class QuizManager : MonoBehaviour
 {
 #pragma warning disable 649
-    [SerializeField] private QuizGameUI quizGameUI;
+    [SerializeField] private QuizGameUI quizGameUI;                // Referencia a la UI
     [SerializeField] private List<QuizDataScriptable> quizDataList;
     [SerializeField] private float timeInSeconds;
 #pragma warning restore 649
@@ -22,6 +22,10 @@ public class QuizManager : MonoBehaviour
     private GameStatus gameStatus = GameStatus.NEXT;
     public GameStatus GameStatus { get { return gameStatus; } }
     public List<QuizDataScriptable> QuizData { get => quizDataList; }
+
+    private int totalQuestions;              // NUEVO: total de preguntas
+    private int currentQuestionNumber;       // NUEVO: número actual de pregunta
+
     public void StartGame(int categoryIndex, string category)
     {
         currentCategory = category;
@@ -29,20 +33,34 @@ public class QuizManager : MonoBehaviour
         gameScore = 0;
         lifesRemaining = 3;
         currentTime = timeInSeconds;
+        currentQuestionNumber = 0; // NUEVO: reiniciar número actual de pregunta
+
         questions = new List<Question>();
         dataScriptable = quizDataList[categoryIndex];
         questions.AddRange(dataScriptable.questions);
+
+        totalQuestions = questions.Count; // NUEVO: establecer total de preguntas
+
         SelectQuestion();
         gameStatus = GameStatus.PLAYING;
     }
 
     private void SelectQuestion()
     {
+        if (questions.Count == 0) return;
+
         int val = UnityEngine.Random.Range(0, questions.Count);
         selectedQuetion = questions[val];
-        quizGameUI.SetQuestion(selectedQuetion);
         questions.RemoveAt(val);
+
+        currentQuestionNumber++; // NUEVO: incrementar el contador de pregunta actual
+
+        quizGameUI.SetQuestion(selectedQuetion);
+
+        // NUEVO: actualizar el texto del contador de preguntas
+        quizGameUI.QuestionCounterText.text = $"{currentQuestionNumber}/{totalQuestions}";
     }
+
     private void Update()
     {
         if (gameStatus == GameStatus.PLAYING)
