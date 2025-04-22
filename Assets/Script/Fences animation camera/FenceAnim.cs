@@ -110,17 +110,4 @@ public class FenceAnim : MonoBehaviour
             Debug.LogError("Animator del flash no encontrado.");
         }
     }
-
-    // Método para restablecer los valores cuando termina la simulación
-    private void OnApplicationQuit()
-    {
-        // Restablecer los valores de PlayerPrefs a su estado por defecto
-        PlayerPrefs.SetInt("fence1Destruida", 0);
-        PlayerPrefs.SetInt("fence2Destruida", 0);
-
-        // Asegúrate de guardar los cambios
-        PlayerPrefs.Save();
-
-        Debug.Log("Valores de PlayerPrefs restablecidos a los valores por defecto.");
-    }
 }

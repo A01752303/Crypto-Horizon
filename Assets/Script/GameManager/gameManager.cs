@@ -4,12 +4,24 @@ using TMPro;
 public class gameManager : MonoBehaviour
 {
     public static gameManager Instance;
+
     public bool nivel1Completo = false;
     public bool nivel2Completo = false;
     public bool nivel3Completo = false;
+
     public int llaves = 0;
 
-    // Variable para almacenar la posición del jugador
+    // Checkmarks de niveles
+    public GameObject checklvl1;
+    public GameObject checklvl2;
+    public GameObject checklvl3;
+
+    // Objetos que se activan con cada llave
+    public GameObject objetoConLlave1;
+    public GameObject objetoConLlave2;
+    public GameObject objetoConLlave3;
+
+    // Posición del jugador
     public Vector3 jugadorPosicion;
 
     private void Awake()
@@ -24,75 +36,108 @@ public class gameManager : MonoBehaviour
             Destroy(gameObject);
         }
 
-        // Cargar los datos guardados al iniciar
+        // Buscar objetos si no se asignaron manualmente
+        if (objetoConLlave1 == null) objetoConLlave1 = GameObject.Find("NombreDelObjeto1");
+        if (objetoConLlave2 == null) objetoConLlave2 = GameObject.Find("NombreDelObjeto2");
+        if (objetoConLlave3 == null) objetoConLlave3 = GameObject.Find("NombreDelObjeto3");
+
+        if (checklvl1 == null) checklvl1 = GameObject.Find("Checklvl1");
+        if (checklvl2 == null) checklvl2 = GameObject.Find("Checklvl2");
+        if (checklvl3 == null) checklvl3 = GameObject.Find("Checklvl3");
+
         CargarProgreso();
     }
 
-    // Método para guardar la posición del jugador
     public void GuardarPosicionJugador(Vector3 nuevaPosicion)
     {
         jugadorPosicion = nuevaPosicion;
     }
 
-    // Método para completar niveles y ganar llaves
     public void CompletarNivel(int nivel)
     {
         if (nivel == 1 && !nivel1Completo)
         {
             nivel1Completo = true;
-            llaves++; // Solo sumar la llave si el nivel no fue completado antes
-            PlayerPrefs.SetInt("nivel1Completo", 1);  // Guardar estado de nivel 1
+            llaves++;
+            PlayerPrefs.SetInt("nivel1Completo", 1);
+
+            checklvl1 = GameObject.Find("Checklvl1");
+            if (checklvl1 != null) checklvl1.SetActive(true);
+
+            if (objetoConLlave1 != null)
+                objetoConLlave1.SetActive(true);
+
+            PlayerPrefs.SetInt("objetoLlave1Activo", 1);
         }
         else if (nivel == 2 && !nivel2Completo)
         {
             nivel2Completo = true;
-            llaves++; // Solo sumar la llave si el nivel no fue completado antes
-            PlayerPrefs.SetInt("nivel2Completo", 1);  // Guardar estado de nivel 2
+            llaves++;
+            PlayerPrefs.SetInt("nivel2Completo", 1);
+
+            checklvl2 = GameObject.Find("Checklvl2");
+            if (checklvl2 != null) checklvl2.SetActive(true);
+
+            if (objetoConLlave2 != null)
+                objetoConLlave2.SetActive(true);
+
+            PlayerPrefs.SetInt("objetoLlave2Activo", 1);
         }
         else if (nivel == 3 && !nivel3Completo)
         {
             nivel3Completo = true;
-            llaves++; // Solo sumar la llave si el nivel no fue completado antes
-            PlayerPrefs.SetInt("nivel3Completo", 1);  // Guardar estado de nivel 3
+            llaves++;
+            PlayerPrefs.SetInt("nivel3Completo", 1);
+
+            checklvl3 = GameObject.Find("Checklvl3");
+            if (checklvl3 != null) checklvl3.SetActive(true);
+
+            if (objetoConLlave3 != null)
+                objetoConLlave3.SetActive(true);
+
+            PlayerPrefs.SetInt("objetoLlave3Activo", 1);
         }
 
-        PlayerPrefs.Save(); // Guardar todos los cambios en PlayerPrefs
+        PlayerPrefs.Save();
     }
 
-    // Método para cargar el progreso guardado
     private void CargarProgreso()
     {
         nivel1Completo = PlayerPrefs.GetInt("nivel1Completo", 0) == 1;
         nivel2Completo = PlayerPrefs.GetInt("nivel2Completo", 0) == 1;
         nivel3Completo = PlayerPrefs.GetInt("nivel3Completo", 0) == 1;
 
-        // Calcular las llaves en función de los niveles completos
         llaves = (nivel1Completo ? 1 : 0) + (nivel2Completo ? 1 : 0) + (nivel3Completo ? 1 : 0);
+
+        if (nivel1Completo && checklvl1 != null) checklvl1.SetActive(true);
+        if (nivel2Completo && checklvl2 != null) checklvl2.SetActive(true);
+        if (nivel3Completo && checklvl3 != null) checklvl3.SetActive(true);
+
+        if (PlayerPrefs.GetInt("objetoLlave1Activo", 0) == 1 && objetoConLlave1 != null)
+            objetoConLlave1.SetActive(true);
+
+        if (PlayerPrefs.GetInt("objetoLlave2Activo", 0) == 1 && objetoConLlave2 != null)
+            objetoConLlave2.SetActive(true);
+
+        if (PlayerPrefs.GetInt("objetoLlave3Activo", 0) == 1 && objetoConLlave3 != null)
+            objetoConLlave3.SetActive(true);
     }
 
-    // Método para restaurar la posición del jugador cuando se recarga la escena
     public void RestaurarPosicionJugador(GameObject jugador)
     {
-        if (jugador != null && jugadorPosicion != null)
+        if (jugador != null)
         {
             jugador.transform.position = jugadorPosicion;
         }
     }
 
-    // Método que se llama cuando la simulación o la aplicación termina
     private void OnApplicationQuit()
     {
-        // Restablecer las variables cuando termine la simulación o la aplicación
-        nivel1Completo = false;
-        nivel2Completo = false;
-        nivel3Completo = false;
-        llaves = 0;
-        jugadorPosicion = Vector3.zero;  // Restablecer la posición guardada
-        Debug.Log("Valores del gameManager reseteados.");
-
-        // Limpiar el progreso de los niveles y llaves al salir
-        PlayerPrefs.DeleteKey("nivel1Completo");
-        PlayerPrefs.DeleteKey("nivel2Completo");
-        PlayerPrefs.DeleteKey("nivel3Completo");
+#if UNITY_EDITOR
+        // Borra los datos guardados solo en el editor
+        PlayerPrefs.DeleteAll();
+        PlayerPrefs.Save();
+        Debug.Log("Progreso borrado al salir del simulador de Unity.");
+#endif
     }
 }
