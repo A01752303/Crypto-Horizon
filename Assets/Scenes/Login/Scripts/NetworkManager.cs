@@ -65,7 +65,7 @@ public class NetworkManager : MonoBehaviour
         };
 
         string json = JsonUtility.ToJson(data);
-        StartCoroutine(SendRequest("http://34.203.202.88:8080/createUser", json, callback));
+        StartCoroutine(SendRequest("http://3.238.158.247:8080/createUser", json, callback));
     }
 
     // ✅ Login extendido con métricas invisibles
@@ -82,7 +82,7 @@ public class NetworkManager : MonoBehaviour
         };
 
         string json = JsonUtility.ToJson(data);
-        StartCoroutine(SendRequest("http://34.203.202.88:8080/loginUser", json, callback));
+        StartCoroutine(SendRequest("http://3.238.158.247:8080/loginUser", json, callback));
     }
 
     // ✅ Guardar sesión del jugador
@@ -102,7 +102,7 @@ public class NetworkManager : MonoBehaviour
         };
 
         string json = JsonUtility.ToJson(session);
-        StartCoroutine(SendRequest("http://34.203.202.88:8080/saveSession", json, callback));
+        StartCoroutine(SendRequest("http://3.238.158.247:8080/saveSession", json, callback));
     }
 
     // ✅ Petición HTTP POST genérica
