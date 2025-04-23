@@ -421,6 +421,14 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 877417962787626161, guid: b3828e3fa89b84e459463adc0f7c2eca, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1869642929}
+    - target: {fileID: 877417962787626161, guid: b3828e3fa89b84e459463adc0f7c2eca, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: completeQuiz2
+      objectReference: {fileID: 0}
     - target: {fileID: 1152625161131593830, guid: b3828e3fa89b84e459463adc0f7c2eca, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -488,6 +496,14 @@ PrefabInstance:
     - target: {fileID: 2986902782505458408, guid: b3828e3fa89b84e459463adc0f7c2eca, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3429091828234452423, guid: b3828e3fa89b84e459463adc0f7c2eca, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1869642929}
+    - target: {fileID: 3429091828234452423, guid: b3828e3fa89b84e459463adc0f7c2eca, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: completeQuiz2
       objectReference: {fileID: 0}
     - target: {fileID: 3923786023372330193, guid: b3828e3fa89b84e459463adc0f7c2eca, type: 3}
       propertyPath: m_AnchorMax.y

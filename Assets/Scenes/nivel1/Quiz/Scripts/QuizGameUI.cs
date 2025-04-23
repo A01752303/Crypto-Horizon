@@ -3,21 +3,24 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
-
 public class QuizGameUI : MonoBehaviour
 {
 #pragma warning disable 649
+    [SerializeField] public gameManager gameManagerInstance; 
     [SerializeField] private QuizManager quizManager;               
     [SerializeField] private CategoryBtnScript categoryBtnPrefab;
     [SerializeField] private GameObject scrollHolder;
     [SerializeField] private Text scoreText, timerText;
+    [SerializeField] private Text totalTimeText, trophyText;
     [SerializeField] private List<Image> lifeImageList;
-    [SerializeField] private GameObject gameOverPanel, winScreenPanel, mainMenu, gamePanel;
+    [SerializeField] public GameObject gameOverPanel, winScreenPanel, mainMenu, gamePanel, PanelWin, PanelWinKey, PanelTrophy;
+    [SerializeField] public GameObject trophybronze, trophysilver, trophygold;
+    [SerializeField] public Button nextButtonPanelWin, backtoislandPanelWin, nextButtonPanelWinKey, backtoislandPanelWinKey, backtoislandPanelTrophy;
     [SerializeField] private Color correctCol, wrongCol, normalCol; 
     [SerializeField] private Image questionImg;                     
     [SerializeField] private UnityEngine.Video.VideoPlayer questionVideo;   
     [SerializeField] private AudioSource questionAudio;             
-    [SerializeField] private Text questionInfoText;                 
+    [SerializeField] private Text questionInfoText;  
     [SerializeField] private List<Button> options;   
     [SerializeField] private int optionFontSize = 24;               // Tamaño de texto de las opciones
     public Animator transition;    
@@ -28,9 +31,10 @@ public class QuizGameUI : MonoBehaviour
     private float audioLength;          
     private Question question;          
     private bool answered = false;      
-
     public Text TimerText { get => timerText; }                  
-    public Text ScoreText { get => scoreText; }               
+    public Text ScoreText { get => scoreText; }    
+    public Text TotalTimeText { get => totalTimeText; }   
+    public Text TrophyText { get => trophyText; }        
     public GameObject GameOverPanel { get => gameOverPanel; }         
     public GameObject WinScreenPanel { get => winScreenPanel; }
     public Text QuestionCounterText { get => questionCounterText; }  // NUEVO: Propiedad para acceder desde QuizManager
@@ -169,5 +173,12 @@ public class QuizGameUI : MonoBehaviour
         transition.SetTrigger("Start");
         yield return new WaitForSeconds(1f);
         SceneManager.LoadScene(levelIndex);
+    }
+
+    public void NextButton()
+    {
+        PanelWin.SetActive(false);
+        PanelWinKey.SetActive(false);
+        PanelTrophy.SetActive(true);
     }
 }
