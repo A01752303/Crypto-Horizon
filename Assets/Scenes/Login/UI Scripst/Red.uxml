@@ -5,7 +5,7 @@
             <engine:VisualElement name="Login" enabled="true" focusable="false" class="captura-datos" style="-unity-background-image-tint-color: rgba(255, 255, 255, 0); width: 800px; border-left-color: rgba(0, 0, 0, 0); border-right-color: rgba(0, 0, 0, 0); border-top-color: rgba(0, 0, 0, 0); border-bottom-color: rgba(0, 0, 0, 0); align-self: center; display: none; height: 750px;">
                 <engine:VisualElement name="VisualElement" style="flex-grow: 1; background-image: resource(&apos;menu principal/title&apos;); height: auto; background-size: 99% 50%; top: 22px;" />
                 <engine:Label name="Text" class="label-mensaje" style="color: rgb(96, 1, 1); top: auto; font-size: 18px;" />
-                <engine:TextField label="Email:" name="LoginUser" placeholder-text="Type Email here" keyboard-type="EmailAddress" auto-correction="false" hide-placeholder-on-focus="true" vertical-scroller-visibility="AlwaysVisible" multiline="false" enabled="true" style="font-size: 30px; height: 66px; -unity-background-image-tint-color: rgb(255, 255, 255); display: flex; background-color: rgba(255, 255, 255, 0);" />
+                <engine:TextField label="Username:" name="LoginUser" placeholder-text="Type Email here" keyboard-type="EmailAddress" auto-correction="false" hide-placeholder-on-focus="true" vertical-scroller-visibility="AlwaysVisible" multiline="false" enabled="true" style="font-size: 30px; height: 66px; -unity-background-image-tint-color: rgb(255, 255, 255); display: flex; background-color: rgba(255, 255, 255, 0);" />
                 <engine:TextField label="Password:" name="LoginPass" password="true" focusable="true" keyboard-type="Default" placeholder-text="Type Password here" hide-placeholder-on-focus="true" style="font-size: 30px; height: 66px;" />
                 <engine:Button text="LOG IN" name="LoginButton" class="botn-envia" style="left: auto; width: 365px; height: 123px; top: auto;" />
                 <engine:Label text="If do not have an account, register below (ツ)" style="align-self: center; top: 91px;" />
@@ -19,13 +19,13 @@
                 <engine:TextField label="Repeat Password:" name="Password" password="true" placeholder-text="Password Again" hide-placeholder-on-focus="true" style="width: 808px; align-self: center; font-size: 27px; height: 66px;" />
                 <engine:Label text="Date of Birth:" selectable="false" class="label-seccion" style="color: rgb(0, 0, 0); width: 808px; align-self: center; font-size: 30px; height: 143px;">
                     <engine:VisualElement name="FechaContainer" style="flex-direction: row; gap: 10px; align-self: flex-end; align-content: flex-start; height: 123px; margin-bottom: 15px; font-size: 0;">
-                        <engine:DropdownField label="Day" name="DayDropdown" style="align-content: flex-start; -unity-text-align: upper-right; font-size: 16px; width: auto; height: auto;" />
-                        <engine:DropdownField label="Month" name="MonthDropdown" style="-unity-text-align: upper-right; font-size: 16px; width: auto; height: auto;" />
-                        <engine:DropdownField label="Year" name="YearDropdown" style="-unity-text-align: upper-right; font-size: 16px; width: auto; height: auto;" />
+                        <engine:DropdownField label="Day" name="DayDropdown" style="align-content: flex-start; -unity-text-align: upper-right; font-size: 25px; width: auto; height: auto; margin-top: 1px; top: 19px; left: 21px; margin-right: 0; margin-left: -62px;" />
+                        <engine:DropdownField label="Month" name="MonthDropdown" style="-unity-text-align: upper-right; font-size: 25px; width: auto; height: auto; top: 19px; left: 27px; margin-right: 4px; margin-left: -17px;" />
+                        <engine:DropdownField label="Year" name="YearDropdown" style="-unity-text-align: upper-right; font-size: 25px; width: auto; height: auto; top: 19px; margin-right: 4px; margin-left: -33px;" />
                     </engine:VisualElement>
                 </engine:Label>
                 <engine:Label text="Gender:" class="label-seccion" style="color: rgb(0, 0, 0); font-size: 30px; width: 808px; align-self: center; height: 44px; padding-right: 0; padding-bottom: 0; padding-top: 0; margin-top: 0; padding-left: 0;" />
-                <engine:DropdownField name="GenderDropdown" style="font-size: 25px; width: 808px; align-self: center;" />
+                <engine:DropdownField name="GenderDropdown" style="font-size: 25px; width: 808px; align-self: center; justify-content: center;" />
                 <engine:Label text="Continent:" class="label-seccion" style="color: rgb(0, 0, 0); width: 808px; align-self: center; font-size: 30px;" />
                 <engine:DropdownField name="ContinentDropdown" style="font-size: 25px; width: 808px; align-self: center;" />
                 <engine:Label text="Country:" class="label-seccion" style="color: rgb(0, 0, 0); font-size: 30px; width: 808px; align-self: center;" />

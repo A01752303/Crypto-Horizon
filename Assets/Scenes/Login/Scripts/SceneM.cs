@@ -56,6 +56,8 @@ public class SceneM : MonoBehaviour
         continentDropdown = registerUI.Q<DropdownField>("ContinentDropdown");
         countryDropdown = registerUI.Q<DropdownField>("CountryDropdown");
 
+
+
         deviceModelField = registerUI.Q<TextField>("DeviceModelField");
         osField = registerUI.Q<TextField>("OSField");
 
@@ -132,21 +134,44 @@ public class SceneM : MonoBehaviour
     }
 
     private void PopulateDateDropdowns()
-    {
-        List<string> days = new List<string>();
-        for (int i = 1; i <= 31; i++) days.Add(i.ToString("D2"));
-        dayDropdown.choices = days;
-        dayDropdown.index = 0;
+{
+    int currentYear = DateTime.Now.Year;
 
-        monthDropdown.choices = DateTimeFormatInfo.InvariantInfo.MonthNames[..12].ToList();
-        monthDropdown.index = 0;
+    List<string> years = new List<string>();
+    for (int i = currentYear; i >= 1900; i--) years.Add(i.ToString());
+    yearDropdown.choices = years;
+    yearDropdown.index = 0;
 
-        List<string> years = new List<string>();
-        int currentYear = DateTime.Now.Year;
-        for (int i = currentYear; i >= 1900; i--) years.Add(i.ToString());
-        yearDropdown.choices = years;
-        yearDropdown.index = 0;
-    }
+    monthDropdown.choices = DateTimeFormatInfo.InvariantInfo.MonthNames[..12].ToList();
+    monthDropdown.index = 0;
+
+    UpdateDaysDropdown(); 
+
+    yearDropdown.RegisterValueChangedCallback(_ => UpdateDaysDropdown());
+    monthDropdown.RegisterValueChangedCallback(_ => UpdateDaysDropdown());
+}
+
+private void UpdateDaysDropdown()
+{
+    if (!int.TryParse(dayDropdown.value, out int currentDay))
+        currentDay = 1;
+
+    int year = int.Parse(yearDropdown.value);
+    int month = monthDropdown.index + 1;
+    int daysInMonth = DateTime.DaysInMonth(year, month);
+
+    List<string> days = new List<string>();
+    for (int i = 1; i <= daysInMonth; i++)
+        days.Add(i.ToString("D2"));
+
+    dayDropdown.choices = days;
+
+    // Intenta mantener el día seleccionado, pero solo si es válido
+    if (currentDay <= daysInMonth)
+        dayDropdown.value = currentDay.ToString("D2");
+    else
+        dayDropdown.value = daysInMonth.ToString("D2");
+}
 
     private void PopulateGenderDropdown()
     {
@@ -169,6 +194,7 @@ public class SceneM : MonoBehaviour
             countryDropdown.index = 0;
         }
     }
+
 
     public void SubmitRegister()
     {
@@ -228,6 +254,7 @@ public class SceneM : MonoBehaviour
     {
         loginUI.style.display = DisplayStyle.Flex;
         registerUI.style.display = DisplayStyle.None;
+        
     }
 
     public void ShowRegister()
@@ -268,4 +295,6 @@ public class SceneM : MonoBehaviour
             Debug.LogWarning("⚠️ La sesión no se guardó antes de cerrar.");
         }
     }
+
 }
+
