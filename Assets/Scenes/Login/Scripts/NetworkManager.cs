@@ -47,6 +47,7 @@ public class NetworkManager : MonoBehaviour
         public string endTime;
     }
 
+
     // ✅ Registro con todos los campos
     public void CreateUserExtended(string userName, string email, string pass, string birthDate, string gender, string country, string deviceModel, string operatingSystem, string platform, string systemLanguage, Action<Response> callback)
     {

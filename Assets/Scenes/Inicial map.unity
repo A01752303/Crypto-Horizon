@@ -42931,6 +42931,12 @@ MonoBehaviour:
   objetoconTrofeo2: {fileID: 2138894636}
   objetoconTrofeo3: {fileID: 774884192}
   jugadorPosicion: {x: 0, y: 0, z: 0}
+  maxScoreLevel1: 0
+  minTimeLevel1: 0
+  maxScoreLevel2: 0
+  minTimeLevel2: 0
+  maxScoreLevel3: 0
+  minTimeLevel3: 0
 --- !u!4 &1382920498
 Transform:
   m_ObjectHideFlags: 0
@@ -44417,6 +44423,8 @@ MonoBehaviour:
   cinemachine: {fileID: 1269354731}
   camera2: {fileID: 705967684}
   camera3: {fileID: 1400725245}
+  animacionFence1YaMostrada: 0
+  animacionFence2YaMostrada: 0
 --- !u!1 &1608964052
 GameObject:
   m_ObjectHideFlags: 0

@@ -11,38 +11,47 @@ public class FenceAnim : MonoBehaviour
     public GameObject cinemachine;
     public GameObject camera2;
     public GameObject camera3;
-
+    public bool animacionFence1YaMostrada;
+    public bool animacionFence2YaMostrada;
     private gameManager gameManager;
 
     void Start()
     {
         gameManager = FindObjectOfType<gameManager>();
 
-        // Revisar estado guardado de destrucción
-        bool fence1Destruida = PlayerPrefs.GetInt("fence1Destruida", 0) == 1;
-        bool fence2Destruida = PlayerPrefs.GetInt("fence2Destruida", 0) == 1;
-
-        // Si ya estaba destruida, ocultarla
-        if (fence1Destruida && fenceObject1 != null)
-            fenceObject1.SetActive(false);
-
-        if (fence2Destruida && fenceObject2 != null)
-            fenceObject2.SetActive(false);
-
-        if (gameManager != null)
+        if (gameManager == null)
         {
-            if (gameManager.nivel1Completo && !gameManager.nivel2Completo && !fence1Destruida)
+            Debug.LogError("gameManager no encontrado en la escena.");
+            return;
+        }
+
+        animacionFence1YaMostrada = PlayerPrefs.GetInt("fence1AnimHecha", 0) == 1;
+        animacionFence2YaMostrada = PlayerPrefs.GetInt("fence2AnimHecha", 0) == 1;
+
+        // Nivel 1 completo
+        if (gameManager.nivel1Completo)
+        {
+            if (!animacionFence1YaMostrada)
             {
                 StartCoroutine(CambiarCamarasConDelay(1.5f, 1));
             }
-            else if (gameManager.nivel1Completo && gameManager.nivel2Completo && !fence2Destruida)
+            else if (fenceObject1 != null)
+            {
+                fenceObject1.SetActive(false); // Ya se destruyó previamente
+            }
+        }
+
+        // Nivel 2 completo
+        if (gameManager.nivel2Completo)
+        {
+            if (!animacionFence2YaMostrada)
             {
                 StartCoroutine(CambiarCamarasConDelay(1.5f, 2));
             }
-        }
-        else
-        {
-            Debug.LogError("gameManager no encontrado en la escena.");
+            else if (fenceObject2 != null)
+            {
+                fenceObject2.SetActive(false); // Ya se destruyó previamente
+            }
         }
     }
 
@@ -61,19 +70,19 @@ public class FenceAnim : MonoBehaviour
 
         yield return new WaitForSeconds(1f);
 
-        // Ocultar y marcar como destruida
+        // Ocultar cerca y marcar animación como hecha
         if (nivel == 1 && fenceObject1 != null)
         {
             fenceObject1.SetActive(false);
-            PlayerPrefs.SetInt("fence1Destruida", 1);
+            PlayerPrefs.SetInt("fence1AnimHecha", 1);
         }
         else if (nivel == 2 && fenceObject2 != null)
         {
             fenceObject2.SetActive(false);
-            PlayerPrefs.SetInt("fence2Destruida", 1);
+            PlayerPrefs.SetInt("fence2AnimHecha", 1);
         }
 
-        PlayerPrefs.Save(); // Guardar cambios en disco
+        PlayerPrefs.Save();
 
         yield return new WaitForSeconds(3f);
 
@@ -85,11 +94,6 @@ public class FenceAnim : MonoBehaviour
 
     private void AnimationFence(int nivel)
     {
-        bool yaDestruida = (nivel == 1 && PlayerPrefs.GetInt("fence1Destruida", 0) == 1) ||
-                           (nivel == 2 && PlayerPrefs.GetInt("fence2Destruida", 0) == 1);
-
-        if (yaDestruida) return;
-
         Animator fence = (nivel == 1) ? fence1 : fence2;
 
         if (fence != null)

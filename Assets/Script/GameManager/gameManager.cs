@@ -37,7 +37,65 @@ public class gameManager : MonoBehaviour
 
     // Posición del jugador
     public Vector3 jugadorPosicion;
+// Variables para almacenar los puntajes máximos y tiempos mínimos por nivel
+    public int maxScoreLevel1 = 0;
+    public float minTimeLevel1 = 0;
 
+    public int maxScoreLevel2 = 0;
+    public float minTimeLevel2 = 0;
+
+    public int maxScoreLevel3 = 0;
+    public float minTimeLevel3 = 0;
+
+    public void GuardarDatosNivel(int nivel, int score, float time)
+    {
+        switch (nivel)
+        {
+            case 1:
+                if (score > maxScoreLevel1)
+                {
+                    maxScoreLevel1 = score;
+                    PlayerPrefs.SetInt("MaxScoreLevel1", maxScoreLevel1);
+                }
+
+                if (minTimeLevel1 == 0 || time < minTimeLevel1)
+                {
+                    minTimeLevel1 = time;
+                    PlayerPrefs.SetFloat("MinTimeLevel1", minTimeLevel1);
+                }
+                break;
+
+            case 2:
+                if (score > maxScoreLevel2)
+                {
+                    maxScoreLevel2 = score;
+                    PlayerPrefs.SetInt("MaxScoreLevel2", maxScoreLevel2);
+                }
+
+                if (minTimeLevel2 == 0 || time < minTimeLevel2)
+                {
+                    minTimeLevel2 = time;
+                    PlayerPrefs.SetFloat("MinTimeLevel2", minTimeLevel2);
+                }
+                break;
+
+            case 3:
+                if (score > maxScoreLevel3)
+                {
+                    maxScoreLevel3 = score;
+                    PlayerPrefs.SetInt("MaxScoreLevel3", maxScoreLevel3);
+                }
+
+                if (minTimeLevel3 == 0 || time < minTimeLevel3)
+                {
+                    minTimeLevel3 = time;
+                    PlayerPrefs.SetFloat("MinTimeLevel3", minTimeLevel3);
+                }
+                break;
+        }
+
+        PlayerPrefs.Save();
+    }
     private void Awake()
     {
         if (Instance == null)
