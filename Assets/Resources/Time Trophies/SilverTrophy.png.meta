@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      SilverTrophy_0: -1322752400276008011
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

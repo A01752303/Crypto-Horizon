@@ -27,7 +27,7 @@
 .botn-envia {
     width: auto;
     align-self: center;
-    margin-top: 32px;
+    margin-top: 20px;
     font-size: 30px;
     background-image: url("project://database/Assets/UI/boton_normal.png?fileID=2800000&guid=17531bdb65d93984da660a07ebd65ad7&type=3#boton_normal");
     background-size: 68% 89%;
@@ -209,4 +209,3 @@
     background-image: url("project://database/Assets/UI/boton_pressed.png?fileID=2800000&guid=5593a4c5a649bb44292a1ba12367e01d&type=3#boton_pressed");
     color: rgb(0, 0, 0);
 }
-

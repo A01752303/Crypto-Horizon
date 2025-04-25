@@ -232,6 +232,7 @@ GameObject:
   - component: {fileID: 274286885}
   - component: {fileID: 274286888}
   - component: {fileID: 274286889}
+  - component: {fileID: 274286890}
   m_Layer: 5
   m_Name: UIRed
   m_TagString: Untagged
@@ -297,6 +298,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 91b54a374d7920b45a3cc164cecaa4fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &274286890
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 274286884}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3704ec761a08dbb4bb10cf63d013bb33, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &385299649
