@@ -13,9 +13,11 @@ public class menuscene : MonoBehaviour
     }
 
     public void exit()
-    {
-        Application.Quit();
-        print("Game is exiting");
+    {     
+        if (SceneM.Instance != null)
+        {
+            SceneM.Instance.logOut();
+        }
     }
 
     public void link(string url)
@@ -33,5 +35,4 @@ public class menuscene : MonoBehaviour
 
         SceneManager.LoadScene(levelIndex);
     }
-
 }

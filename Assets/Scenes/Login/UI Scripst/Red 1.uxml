@@ -2,16 +2,20 @@
     <Style src="project://database/Assets/Scenes/Login/UI%20Scripst/Red.uss?fileID=7433441132597879392&amp;guid=f09ecfe4133594e428e4fc8f3ac0a4d4&amp;type=3#Red" />
     <engine:VisualElement name="Contenedor" class="contenedor">
         <engine:VisualElement name="PanelDerecho" class="panel-derecho" style="background-color: rgba(0, 102, 255, 0); width: 55%;">
-            <engine:VisualElement name="Login" enabled="true" focusable="false" class="captura-datos" style="-unity-background-image-tint-color: rgba(255, 255, 255, 0); width: 800px; border-left-color: rgba(0, 0, 0, 0); border-right-color: rgba(0, 0, 0, 0); border-top-color: rgba(0, 0, 0, 0); border-bottom-color: rgba(0, 0, 0, 0); align-self: center; display: none; height: 750px;">
-                <engine:VisualElement name="VisualElement" style="flex-grow: 1; background-image: resource(&apos;menu principal/title&apos;); height: auto; background-size: 99% 50%; top: 22px;" />
+            <engine:VisualElement name="Login" enabled="true" focusable="false" class="captura-datos" style="-unity-background-image-tint-color: rgba(255, 255, 255, 0); width: 800px; border-left-color: rgba(0, 0, 0, 0); border-right-color: rgba(0, 0, 0, 0); border-top-color: rgba(0, 0, 0, 0); border-bottom-color: rgba(0, 0, 0, 0); align-self: center; display: flex; height: 750px;">
+                <engine:VisualElement name="VisualElement" style="flex-grow: 1; background-image: resource(&apos;menu principal/title&apos;); height: auto; background-size: 99% 50%; top: auto;" />
                 <engine:Label name="Text" class="label-mensaje" style="color: rgb(96, 1, 1); top: auto; font-size: 18px;" />
-                <engine:TextField label="Email:" name="LoginUser" placeholder-text="Type Email here" keyboard-type="EmailAddress" auto-correction="false" hide-placeholder-on-focus="true" vertical-scroller-visibility="AlwaysVisible" multiline="false" enabled="true" style="font-size: 30px; height: 66px; -unity-background-image-tint-color: rgb(255, 255, 255); display: flex; background-color: rgba(255, 255, 255, 0);" />
-                <engine:TextField label="Password:" name="LoginPass" password="true" focusable="true" keyboard-type="Default" placeholder-text="Type Password here" hide-placeholder-on-focus="true" style="font-size: 30px; height: 66px;" />
+                <engine:TextField label="Username:" name="LoginUser" placeholder-text="Type Email here" keyboard-type="EmailAddress" auto-correction="false" hide-placeholder-on-focus="true" vertical-scroller-visibility="AlwaysVisible" multiline="false" enabled="true" style="font-size: 30px; height: 66px; -unity-background-image-tint-color: rgb(255, 255, 255); display: flex; background-color: rgba(255, 255, 255, 0); top: auto;" />
+                <engine:TextField label="Password:" name="LoginPass" password="true" focusable="true" keyboard-type="Default" placeholder-text="Type Password here" hide-placeholder-on-focus="true" style="font-size: 30px; height: 66px; top: auto;" />
                 <engine:Button text="LOG IN" name="LoginButton" class="botn-envia" style="left: auto; width: 365px; height: 123px; top: auto;" />
-                <engine:Label text="If do not have an account, register below (ツ)" style="align-self: center; top: 91px;" />
-                <engine:Button text="REGISTER" name="RegisterButton" class="botn-envia" style="top: 42px; left: auto; width: 386px; height: 122px; background-image: none;" />
+                <engine:VisualElement style="flex-grow: 1; width: 45px; height: 20px;">
+                    <engine:Label text="Forgot your password?" style="align-self: center; top: 50px; justify-content: center; align-items: center; align-content: center; left: 200px; right: 100px;" />
+                    <engine:Button text="RESTORE" name="RestoreButton" class="botn-envia" style="top: 10px; left: 340px; width: 386px; height: 122px; background-image: none; align-items: center; justify-content: center; right: 50px;" />
+                    <engine:Label text="If do not have an account, register below (ツ)" style="align-self: center; top: 10px; align-items: center; justify-content: center; left: 75px; right: 100px; display: flex;" />
+                    <engine:Button text="REGISTER" name="RegisterButton" class="botn-envia" style="top: -35px; left: 340px; width: 386px; height: 122px; background-image: none; align-items: center; justify-content: center; right: 100px;" />
+                </engine:VisualElement>
             </engine:VisualElement>
-            <engine:VisualElement name="Register" enabled="true" class="captura-datos" style="display: flex;">
+            <engine:VisualElement name="Register" enabled="true" class="captura-datos" style="display: none;">
                 <engine:Label name="Text" class="label-mensaje" style="color: rgb(142, 6, 6);" />
                 <engine:TextField label="Username:" name="UserNameInput" password="false" is-delayed="false" placeholder-text="Type Username Here" hide-placeholder-on-focus="true" readonly="false" multiline="false" class="UserNameInput" style="font-size: 27px; width: 808px; align-self: center; height: 66px;" />
                 <engine:TextField label="Email:" name="EmailInput" placeholder-text="Type Email Here" hide-placeholder-on-focus="true" keyboard-type="EmailAddress" style="width: 808px; align-self: center; font-size: 27px; height: 66px;" />
@@ -19,13 +23,13 @@
                 <engine:TextField label="Repeat Password:" name="Password" password="true" placeholder-text="Password Again" hide-placeholder-on-focus="true" style="width: 808px; align-self: center; font-size: 27px; height: 66px;" />
                 <engine:Label text="Date of Birth:" selectable="false" class="label-seccion" style="color: rgb(0, 0, 0); width: 808px; align-self: center; font-size: 30px; height: 143px;">
                     <engine:VisualElement name="FechaContainer" style="flex-direction: row; gap: 10px; align-self: flex-end; align-content: flex-start; height: 123px; margin-bottom: 15px; font-size: 0;">
-                        <engine:DropdownField label="Day" name="DayDropdown" style="align-content: flex-start; -unity-text-align: upper-right; font-size: 16px; width: auto; height: auto;" />
-                        <engine:DropdownField label="Month" name="MonthDropdown" style="-unity-text-align: upper-right; font-size: 16px; width: auto; height: auto;" />
-                        <engine:DropdownField label="Year" name="YearDropdown" style="-unity-text-align: upper-right; font-size: 16px; width: auto; height: auto;" />
+                        <engine:DropdownField label="Day" name="DayDropdown" style="align-content: flex-start; -unity-text-align: upper-right; font-size: 25px; width: auto; height: auto; margin-top: 1px; top: 19px; left: 21px; margin-right: 0; margin-left: -62px;" />
+                        <engine:DropdownField label="Month" name="MonthDropdown" style="-unity-text-align: upper-right; font-size: 25px; width: auto; height: auto; top: 19px; left: 27px; margin-right: 4px; margin-left: -17px;" />
+                        <engine:DropdownField label="Year" name="YearDropdown" style="-unity-text-align: upper-right; font-size: 25px; width: auto; height: auto; top: 19px; margin-right: 4px; margin-left: -33px;" />
                     </engine:VisualElement>
                 </engine:Label>
                 <engine:Label text="Gender:" class="label-seccion" style="color: rgb(0, 0, 0); font-size: 30px; width: 808px; align-self: center; height: 44px; padding-right: 0; padding-bottom: 0; padding-top: 0; margin-top: 0; padding-left: 0;" />
-                <engine:DropdownField name="GenderDropdown" style="font-size: 25px; width: 808px; align-self: center;" />
+                <engine:DropdownField name="GenderDropdown" style="font-size: 25px; width: 808px; align-self: center; justify-content: center;" />
                 <engine:Label text="Continent:" class="label-seccion" style="color: rgb(0, 0, 0); width: 808px; align-self: center; font-size: 30px;" />
                 <engine:DropdownField name="ContinentDropdown" style="font-size: 25px; width: 808px; align-self: center;" />
                 <engine:Label text="Country:" class="label-seccion" style="color: rgb(0, 0, 0); font-size: 30px; width: 808px; align-self: center;" />

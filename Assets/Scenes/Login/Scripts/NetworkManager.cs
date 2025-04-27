@@ -5,6 +5,21 @@ using UnityEngine.Networking;
 
 public class NetworkManager : MonoBehaviour
 {
+    public static NetworkManager Instance { get; private set; }
+    
+    private void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
+    
     [Serializable]
     public class UserData
     {
@@ -42,11 +57,10 @@ public class NetworkManager : MonoBehaviour
     [Serializable]
     public class SessionData
     {
-        public int userId;
+        public int id_usuario;
         public string startTime;
         public string endTime;
     }
-
 
     // ✅ Registro con todos los campos
     public void CreateUserExtended(string userName, string email, string pass, string birthDate, string gender, string country, string deviceModel, string operatingSystem, string platform, string systemLanguage, Action<Response> callback)
@@ -89,15 +103,19 @@ public class NetworkManager : MonoBehaviour
     // ✅ Guardar sesión del jugador
     public void SaveSession(int userId, string startTime, string endTime, Action<Response> callback)
     {
+        if (userId == 0 || string.IsNullOrWhiteSpace(startTime) || string.IsNullOrWhiteSpace(endTime))
+        {
+            Debug.LogWarning("⚠️ Datos incompletos para guardar sesión.");
+            callback?.Invoke(new Response { done = false, message = "Datos incompletos", userId = 0 });
+            return;
+        }
+
         string formattedStartTime = DateTime.Parse(startTime).ToString("yyyy-MM-dd HH:mm:ss");
         string formattedEndTime = DateTime.Parse(endTime).ToString("yyyy-MM-dd HH:mm:ss");
 
-        Debug.Log("🕓 Start Time: " + formattedStartTime);
-        Debug.Log("🕓 End Time: " + formattedEndTime);
-
         SessionData session = new SessionData
         {
-            userId = userId,
+            id_usuario = userId,
             startTime = formattedStartTime,
             endTime = formattedEndTime
         };

@@ -9,6 +9,7 @@ using System.Linq;
 
 public class SceneM : MonoBehaviour
 {
+    public static SceneM Instance { get; private set; }
     public Animator animator;
     [SerializeField] private UIDocument uiDocument;
     [SerializeField] private NetworkManager networkManager;
@@ -33,8 +34,31 @@ public class SceneM : MonoBehaviour
 
     private Label messageLabel;
 
-    private int currentUserId = 0;
-    private string sessionStartTime = "";
+    public int currentUserId = 0;
+    public string sessionStartTime = "";
+
+    private void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+            
+            // Handle the NetworkManager reference
+            if (networkManager == null)
+            {
+                networkManager = NetworkManager.Instance;
+                if (networkManager == null)
+                {
+                    Debug.LogError("NetworkManager reference not set and Instance not found");
+                }
+            }
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
 
     private void OnEnable()
     {
@@ -55,8 +79,6 @@ public class SceneM : MonoBehaviour
         genderDropdown = registerUI.Q<DropdownField>("GenderDropdown");
         continentDropdown = registerUI.Q<DropdownField>("ContinentDropdown");
         countryDropdown = registerUI.Q<DropdownField>("CountryDropdown");
-
-
 
         deviceModelField = registerUI.Q<TextField>("DeviceModelField");
         osField = registerUI.Q<TextField>("OSField");
@@ -81,6 +103,19 @@ public class SceneM : MonoBehaviour
         var loginPasswordField = loginUI.Q<TextField>("LoginPass");
         var loginMessageLabel = loginUI.Q<Label>("Text");
         var loginButton = loginUI.Q<Button>("LoginButton");
+        var restoreButton = root.Q<Button>("RestoreButton");
+
+        if (restoreButton != null)
+        {
+            restoreButton.clicked += () =>
+            {
+                Application.OpenURL("https://www.cryptohorizongame.org/forgot"); // Ruta web para reestablecer contraseña
+            };
+        }
+        else
+        {
+            Debug.LogWarning("No se encontró el botón con name 'RestoreButton'");
+        }
 
         if (loginButton != null)
         {
@@ -127,51 +162,34 @@ public class SceneM : MonoBehaviour
 
     IEnumerator SceneMainMenu()
     {
-        animator.SetTrigger("Start");
-        yield return new WaitForSeconds(0.5f);
-
+        // Trigger animation if it exists
+        if (animator != null)
+        {
+            animator.SetTrigger("Start");
+            yield return new WaitForSeconds(0.5f);
+        }
+        uiDocument.rootVisualElement.style.display = DisplayStyle.None;
+        
+        // Now load the next scene
         SceneManager.LoadScene(1);
     }
 
     private void PopulateDateDropdowns()
-{
-    int currentYear = DateTime.Now.Year;
+    {
+        List<string> days = new List<string>();
+        for (int i = 1; i <= 31; i++) days.Add(i.ToString("D2"));
+        dayDropdown.choices = days;
+        dayDropdown.index = 0;
 
-    List<string> years = new List<string>();
-    for (int i = currentYear; i >= 1900; i--) years.Add(i.ToString());
-    yearDropdown.choices = years;
-    yearDropdown.index = 0;
+        monthDropdown.choices = DateTimeFormatInfo.InvariantInfo.MonthNames[..12].ToList();
+        monthDropdown.index = 0;
 
-    monthDropdown.choices = DateTimeFormatInfo.InvariantInfo.MonthNames[..12].ToList();
-    monthDropdown.index = 0;
-
-    UpdateDaysDropdown(); 
-
-    yearDropdown.RegisterValueChangedCallback(_ => UpdateDaysDropdown());
-    monthDropdown.RegisterValueChangedCallback(_ => UpdateDaysDropdown());
-}
-
-private void UpdateDaysDropdown()
-{
-    if (!int.TryParse(dayDropdown.value, out int currentDay))
-        currentDay = 1;
-
-    int year = int.Parse(yearDropdown.value);
-    int month = monthDropdown.index + 1;
-    int daysInMonth = DateTime.DaysInMonth(year, month);
-
-    List<string> days = new List<string>();
-    for (int i = 1; i <= daysInMonth; i++)
-        days.Add(i.ToString("D2"));
-
-    dayDropdown.choices = days;
-
-    // Intenta mantener el día seleccionado, pero solo si es válido
-    if (currentDay <= daysInMonth)
-        dayDropdown.value = currentDay.ToString("D2");
-    else
-        dayDropdown.value = daysInMonth.ToString("D2");
-}
+        List<string> years = new List<string>();
+        int currentYear = DateTime.Now.Year;
+        for (int i = currentYear; i >= 1900; i--) years.Add(i.ToString());
+        yearDropdown.choices = years;
+        yearDropdown.index = 0;
+    }
 
     private void PopulateGenderDropdown()
     {
@@ -194,7 +212,6 @@ private void UpdateDaysDropdown()
             countryDropdown.index = 0;
         }
     }
-
 
     public void SubmitRegister()
     {
@@ -254,7 +271,6 @@ private void UpdateDaysDropdown()
     {
         loginUI.style.display = DisplayStyle.Flex;
         registerUI.style.display = DisplayStyle.None;
-        
     }
 
     public void ShowRegister()
@@ -263,15 +279,27 @@ private void UpdateDaysDropdown()
         registerUI.style.display = DisplayStyle.Flex;
     }
 
-    private void OnApplicationQuit()
+    public void LogoutAndExit()
     {
+        Debug.Log($"🛑 Saliendo con ID: {currentUserId}, Start: {sessionStartTime}");
+
         if (currentUserId != 0 && !string.IsNullOrEmpty(sessionStartTime))
         {
             string endTime = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
-            Debug.Log($"🚪 Cerrando aplicación - Guardando sesión con ID {currentUserId}");
             StartCoroutine(SaveSessionBeforeExit(currentUserId, sessionStartTime, endTime));
         }
+        else
+        {
+            Debug.LogWarning("❌ No hay datos válidos para guardar sesión.");
+        }
+
+        PlayerPrefs.DeleteKey("LastUserId");
+        PlayerPrefs.DeleteKey("LastSessionStart");
+        PlayerPrefs.Save();
+
+        Debug.Log("🚪 Game is exiting");
     }
+
 
     private IEnumerator SaveSessionBeforeExit(int userId, string start, string end)
     {
@@ -296,5 +324,24 @@ private void UpdateDaysDropdown()
         }
     }
 
+    public void logOut()
+    {
+        Debug.Log($"🛑 Saliendo con ID: {currentUserId}, Start: {sessionStartTime}");
+        if (currentUserId != 0 && !string.IsNullOrEmpty(sessionStartTime))
+        {
+            string endTime = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+            StartCoroutine(SaveSessionBeforeExit(currentUserId, sessionStartTime, endTime));
+        }
+        else
+        {
+            Debug.LogWarning("❌ No hay datos válidos para guardar sesión.");
+        }
+        SceneManager.LoadScene(0);
+        PlayerPrefs.DeleteKey("LastUserId");
+        PlayerPrefs.DeleteKey("LastSessionStart");
+        PlayerPrefs.Save();
+        Debug.Log("🚪 Logging out");
+        uiDocument.rootVisualElement.style.display = DisplayStyle.Flex;
+    }
 }
 

@@ -24,12 +24,9 @@ public class QuizManager : MonoBehaviour
     public List<QuizDataScriptable> QuizData { get => quizDataList; }
     private int totalQuestions;              // NUEVO: total de preguntas
     private int currentQuestionNumber;       // NUEVO: número actual de pregunta
-    private float elapsedTime;
 
     private int currentLevel = 0; // NUEVO: nivel actual (0, 1 o 2)
     public int CurrentLevel { get => currentLevel; } // NUEVO: propiedad para acceder al nivel actual
-    public int GameScore { get => gameScore; } // NUEVO: propiedad para acceder a la puntuación del juego
-    public float ElapsedTime { set => elapsedTime = value; get => elapsedTime; } // NUEVO: propiedad para acceder al tiempo transcurrido
 
     public void StartGame(int categoryIndex, string category)
     {
@@ -223,41 +220,41 @@ public class QuizManager : MonoBehaviour
         gameStatus = GameStatus.NEXT;
         quizGameUI.winScreenPanel.SetActive(true);
 
-        ElapsedTime =  Mathf.Round((timeInSeconds - currentTime) * 100f) / 100f;
+        float elapsedTime = timeInSeconds - currentTime;
 
-        // Obtener el nivel actual usando la función GetCurrentLevel
-        int currentLevel = GetCurrentLevel();
+    // Obtener el nivel actual usando la función GetCurrentLevel
+    int currentLevel = GetCurrentLevel();
 
-        // Referencias a los trofeos según el nivel
-        ref bool bronce = ref gameManager.Instance.trofeobroncenivel1;
-        ref bool plata = ref gameManager.Instance.trofeoplatanivel1;
-        ref bool oro = ref gameManager.Instance.trofeogoldnivel1;
+    // Referencias a los trofeos según el nivel
+    ref bool bronce = ref gameManager.Instance.trofeobroncenivel1;
+    ref bool plata = ref gameManager.Instance.trofeoplatanivel1;
+    ref bool oro = ref gameManager.Instance.trofeogoldnivel1;
 
-        // Verificar el nivel actual y asignar los trofeos correspondientes
-        switch (currentLevel)
-        {
-            case 1:
-                bronce = ref gameManager.Instance.trofeobroncenivel1;
-                plata = ref gameManager.Instance.trofeoplatanivel1;
-                oro = ref gameManager.Instance.trofeogoldnivel1;
-                break;
-            case 2:
-                bronce = ref gameManager.Instance.trofeobroncenivel2;
-                plata = ref gameManager.Instance.trofeoplatanivel2;
-                oro = ref gameManager.Instance.trofeogoldnivel2;
-                break;
-            case 3:
-                bronce = ref gameManager.Instance.trofeobroncenivel3;
-                plata = ref gameManager.Instance.trofeoplatanivel3;
-                oro = ref gameManager.Instance.trofeogoldnivel3;
-                break;
-            default:
-                // Si no estamos en un nivel válido, no se asignan trofeos
-                break;
-        }
+    // Verificar el nivel actual y asignar los trofeos correspondientes
+    switch (currentLevel)
+    {
+        case 1:
+            bronce = ref gameManager.Instance.trofeobroncenivel1;
+            plata = ref gameManager.Instance.trofeoplatanivel1;
+            oro = ref gameManager.Instance.trofeogoldnivel1;
+            break;
+        case 2:
+            bronce = ref gameManager.Instance.trofeobroncenivel2;
+            plata = ref gameManager.Instance.trofeoplatanivel2;
+            oro = ref gameManager.Instance.trofeogoldnivel2;
+            break;
+        case 3:
+            bronce = ref gameManager.Instance.trofeobroncenivel3;
+            plata = ref gameManager.Instance.trofeoplatanivel3;
+            oro = ref gameManager.Instance.trofeogoldnivel3;
+            break;
+        default:
+            // Si no estamos en un nivel válido, no se asignan trofeos
+            break;
+    }
 
-        gameManager.Instance.GuardarDatosNivel(currentLevel, gameScore, ElapsedTime);
-        ActualizarTrofeo(ref bronce, ref plata, ref oro, ElapsedTime);
+
+        ActualizarTrofeo(ref bronce, ref plata, ref oro, elapsedTime);
         quizGameUI.TotalTimeText.text = "Your time: " + elapsedTime.ToString("F2") + " seconds";
 
         // Mostrar el panel correcto según si mejoró o no
@@ -275,10 +272,9 @@ public class QuizManager : MonoBehaviour
         }
 
         // Mostrar gráficamente la copa obtenida
-        quizGameUI.trophybronze.SetActive(ElapsedTime <= 60f && ElapsedTime > 40f);
-        quizGameUI.trophysilver.SetActive(ElapsedTime <= 40f && ElapsedTime > 20f);
-        quizGameUI.trophygold.SetActive(ElapsedTime <= 20f);
-
+        quizGameUI.trophybronze.SetActive(elapsedTime <= 60f && elapsedTime > 40f);
+        quizGameUI.trophysilver.SetActive(elapsedTime <= 40f && elapsedTime > 20f);
+        quizGameUI.trophygold.SetActive(elapsedTime <= 20f);
 
         PlayerPrefs.SetInt(currentCategory, correctAnswerCount);
     }
