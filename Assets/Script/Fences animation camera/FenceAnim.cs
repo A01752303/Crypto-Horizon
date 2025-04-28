@@ -16,7 +16,7 @@ public class FenceAnim : MonoBehaviour
 
     void Start()
     {
-        gameManager = FindObjectOfType<gameManager>();
+        gameManager = FindFirstObjectByType<gameManager>();
 
         // Revisar estado guardado de destrucción
         bool fence1Destruida = PlayerPrefs.GetInt("fence1Destruida", 0) == 1;

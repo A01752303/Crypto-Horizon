@@ -1,6 +1,7 @@
 using UnityEngine;
 using TMPro;
 using System.Runtime.CompilerServices;
+using UnityEditor.SearchService;
 
 public class gameManager : MonoBehaviour
 {
@@ -51,7 +52,7 @@ public class gameManager : MonoBehaviour
             Destroy(gameObject);
         }
 
-        CargarProgreso();
+        CargarProgresoBD();
     }
 
     public void GuardarPosicionJugador(Vector3 nuevaPosicion)
@@ -105,6 +106,18 @@ public class gameManager : MonoBehaviour
         }
 
         PlayerPrefs.Save();
+        
+        NetworkManager.Instance.saveLevelCompleted(SceneM.Instance.currentUserId, nivel, QuizManager.correctAnswerCount, QuizManager.completionTime, response =>
+        {
+            if (response.done)
+            {
+                Debug.Log("Nivel " + nivel + " guardado correctamente.");
+            }
+            else
+            {
+                Debug.LogError("Error al guardar el nivel " + nivel + ": " + response.message);
+            }
+        });
     }
 
     public void CompletarTrofeoGold(int nivel)
@@ -177,6 +190,85 @@ public class gameManager : MonoBehaviour
             objetoconTrofeo2.SetActive(true);
         if (PlayerPrefs.GetInt("objetoTrofeoGold3Activo", 0) == 1 && objetoconTrofeo3 != null)
             objetoconTrofeo3.SetActive(true);
+    }
+
+    private void CargarProgresoBD()
+    {
+        int userId = SceneM.Instance.currentUserId;
+        NetworkManager.Instance.LoadUserProgress(SceneM.Instance.currentUserId, response =>
+        {
+
+            Debug.Log($"Respuesta recibida. Éxito: {response.done}, Mensaje: {response.message}");
+            if (response.done && response.progress != null)
+            {
+                foreach (var progress in response.progress)
+                {
+                    switch (progress.level_id)
+                    {
+                        case 1:
+                            nivel1Completo = true;
+                            llaves++;
+                            PlayerPrefs.SetInt("nivel1Completo", 1);
+                            PlayerPrefs.SetInt("objetoLlave1Activo", 1);
+                            if (checklvl1 != null) checklvl1.SetActive(true);
+                            if (objetoConLlave1 != null) objetoConLlave1.SetActive(true);
+
+                            if (progress.time <= 20)
+                            {
+                                trofeogoldnivel1 = true;
+                                PlayerPrefs.SetInt("trofeogoldnivel1", 1);
+                                PlayerPrefs.SetInt("objetoTrofeoGold1Activo", 1);
+                                if (checkTrofeo1 != null) checkTrofeo1.SetActive(true);
+                                if (objetoconTrofeo1 != null) objetoconTrofeo1.SetActive(true);
+                                PlayerPrefs.SetInt("fence1Destruida", 1);
+                            }
+                            break;
+                        case 2:
+                            nivel2Completo = true;
+                            llaves++;
+                            PlayerPrefs.SetInt("nivel2Completo", 1);
+                            PlayerPrefs.SetInt("objetoLlave2Activo", 1);
+                            if (checklvl2 != null) checklvl2.SetActive(true);
+                            if (objetoConLlave2 != null) objetoConLlave2.SetActive(true);
+                            PlayerPrefs.SetInt("fence2Destruida", 1);
+
+
+                            if (progress.time <= 20)
+                            {
+                                trofeogoldnivel2 = true;
+                                PlayerPrefs.SetInt("trofeogoldnivel2", 1);
+                                PlayerPrefs.SetInt("objetoTrofeoGold2Activo", 1);
+                                if (checkTrofeo2 != null) checkTrofeo2.SetActive(true);
+                                if (objetoconTrofeo2 != null) objetoconTrofeo2.SetActive(true);
+                            }
+                            break;
+                        case 3:
+                            nivel3Completo = true;
+                            llaves++;
+                            PlayerPrefs.SetInt("nivel3Completo", 1);
+                            PlayerPrefs.SetInt("objetoLlave3Activo", 1);
+                            if (checklvl3 != null) checklvl3.SetActive(true);
+                            if (objetoConLlave3 != null) objetoConLlave3.SetActive(true);
+
+                            if (progress.time <= 20)
+                            {
+                                trofeogoldnivel1 = true;
+                                PlayerPrefs.SetInt("trofeogoldnivel3", 1);
+                                PlayerPrefs.SetInt("objetoTrofeoGold3Activo", 1);
+                                if (checkTrofeo3 != null) checkTrofeo3.SetActive(true);
+                                if (objetoconTrofeo3 != null) objetoconTrofeo3.SetActive(true);
+                            }
+                            break;
+                    }
+                }
+                PlayerPrefs.Save();
+                GuardarTrofeos();
+            }
+            else
+            {
+                Debug.LogError("Error al cargar el progreso: " + response.message);
+            }
+        });
     }
 
 

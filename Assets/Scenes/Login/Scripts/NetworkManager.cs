@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
 
@@ -62,6 +63,50 @@ public class NetworkManager : MonoBehaviour
         public string endTime;
     }
 
+    [Serializable]
+    public class usercompletedLevel
+    {
+        public int id_usuario;
+        public int level_id;
+        public int aciertos;
+        public float tiempo_finalizacion;
+    }
+
+    [Serializable]
+    public class progress
+    {
+        public int level_id;
+        public float time;
+    }
+
+    [Serializable]
+    public class ProgressResponse : Response
+    {
+        public List<progress> progress;
+    }
+
+    // ✅ Guardar progreso del jugador
+    public void saveLevelCompleted(int id_usuario, int level_id, int aciertos, float tiempo_finalizacion, Action<Response> callback)
+    {
+        if (id_usuario == 0 || level_id == 0)
+        {
+            Debug.LogWarning("⚠️ Datos incompletos para guardar el nivel.");
+            callback?.Invoke(new Response { done = false, message = "Datos incompletos", userId = 0 });
+            return;
+        }
+
+        usercompletedLevel data = new usercompletedLevel
+        {
+            id_usuario = id_usuario,
+            level_id = level_id,
+            aciertos = aciertos,
+            tiempo_finalizacion  = tiempo_finalizacion
+        };
+
+        string json = JsonUtility.ToJson(data);
+        StartCoroutine(SendRequest("https://www.cryptohorizongame.org/saveLevelCompleted", json, callback));
+    }
+
     // ✅ Registro con todos los campos
     public void CreateUserExtended(string userName, string email, string pass, string birthDate, string gender, string country, string deviceModel, string operatingSystem, string platform, string systemLanguage, Action<Response> callback)
     {
@@ -122,6 +167,41 @@ public class NetworkManager : MonoBehaviour
 
         string json = JsonUtility.ToJson(session);
         StartCoroutine(SendRequest("https://www.cryptohorizongame.org/saveSession", json, callback));
+    }
+
+    public void LoadUserProgress(int userId, Action<ProgressResponse> callback)
+    {
+        if (userId == 0)
+        {
+            Debug.LogWarning("⚠️ ID de usuario no válido.");
+            callback?.Invoke(new ProgressResponse { done = false, message = "ID de usuario no válido", userId = 0 });
+            return;
+        }
+
+        WWWForm form = new WWWForm();
+        form.AddField("id_usuario", userId);
+
+        StartCoroutine(SendProgressRequest("https://www.cryptohorizongame.org/getUserProgress", form, callback));
+    }
+
+    private IEnumerator SendProgressRequest(string url, WWWForm form, Action<ProgressResponse> callback)
+    {
+        using (UnityWebRequest www = UnityWebRequest.Post(url, form))
+        {
+            yield return www.SendWebRequest();
+
+            if (www.result != UnityWebRequest.Result.Success)
+            {
+                Debug.LogError("Error fetching user progress: " + www.error);
+                callback?.Invoke(new ProgressResponse { done = false, message = www.error });
+            }
+            else
+            {
+                string responseText = www.downloadHandler.text;
+                ProgressResponse response = JsonUtility.FromJson<ProgressResponse>(responseText);
+                callback?.Invoke(response);
+            }
+        }
     }
 
     // ✅ Petición HTTP POST genérica

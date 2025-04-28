@@ -12,7 +12,7 @@ public class QuizManager : MonoBehaviour
 #pragma warning restore 649
 
     private string currentCategory = "";
-    private int correctAnswerCount = 0;
+    public static int correctAnswerCount = 0;
     private List<Question> questions;
     private Question selectedQuetion = new Question();
     private int gameScore;
@@ -26,6 +26,8 @@ public class QuizManager : MonoBehaviour
     private int currentQuestionNumber;       // NUEVO: número actual de pregunta
 
     private int currentLevel = 0; // NUEVO: nivel actual (0, 1 o 2)
+        // Add this with your other static variables
+    public static float completionTime = 0;
     public int CurrentLevel { get => currentLevel; } // NUEVO: propiedad para acceder al nivel actual
 
     public void StartGame(int categoryIndex, string category)
@@ -221,6 +223,7 @@ public class QuizManager : MonoBehaviour
         quizGameUI.winScreenPanel.SetActive(true);
 
         float elapsedTime = timeInSeconds - currentTime;
+        completionTime = elapsedTime;
 
     // Obtener el nivel actual usando la función GetCurrentLevel
     int currentLevel = GetCurrentLevel();
