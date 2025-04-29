@@ -165,33 +165,6 @@ public class gameManager : MonoBehaviour
         PlayerPrefs.Save();
     }
 
-    private void CargarProgreso()
-    {
-        nivel1Completo = PlayerPrefs.GetInt("nivel1Completo", 0) == 1;
-        nivel2Completo = PlayerPrefs.GetInt("nivel2Completo", 0) == 1;
-        nivel3Completo = PlayerPrefs.GetInt("nivel3Completo", 0) == 1;
-
-        llaves = (nivel1Completo ? 1 : 0) + (nivel2Completo ? 1 : 0) + (nivel3Completo ? 1 : 0);
-
-        if (nivel1Completo && checklvl1 != null) checklvl1.SetActive(true);
-        if (nivel2Completo && checklvl2 != null) checklvl2.SetActive(true);
-        if (nivel3Completo && checklvl3 != null) checklvl3.SetActive(true);
-
-        if (PlayerPrefs.GetInt("objetoLlave1Activo", 0) == 1 && objetoConLlave1 != null)
-            objetoConLlave1.SetActive(true);
-        if (PlayerPrefs.GetInt("objetoLlave2Activo", 0) == 1 && objetoConLlave2 != null)
-            objetoConLlave2.SetActive(true);
-        if (PlayerPrefs.GetInt("objetoLlave3Activo", 0) == 1 && objetoConLlave3 != null)
-            objetoConLlave3.SetActive(true);
-
-        if (PlayerPrefs.GetInt("objetoTrofeoGold1Activo", 0) == 1 && objetoconTrofeo1 != null)
-            objetoconTrofeo1.SetActive(true);
-        if (PlayerPrefs.GetInt("objetoTrofeoGold2Activo", 0) == 1 && objetoconTrofeo2 != null)
-            objetoconTrofeo2.SetActive(true);
-        if (PlayerPrefs.GetInt("objetoTrofeoGold3Activo", 0) == 1 && objetoconTrofeo3 != null)
-            objetoconTrofeo3.SetActive(true);
-    }
-
     private void CargarProgresoBD()
     {
         int userId = SceneM.Instance.currentUserId;
@@ -212,6 +185,7 @@ public class gameManager : MonoBehaviour
                             PlayerPrefs.SetInt("objetoLlave1Activo", 1);
                             if (checklvl1 != null) checklvl1.SetActive(true);
                             if (objetoConLlave1 != null) objetoConLlave1.SetActive(true);
+                            PlayerPrefs.SetInt("fence1Destruida", 1);
 
                             if (progress.time <= 20)
                             {
@@ -220,7 +194,6 @@ public class gameManager : MonoBehaviour
                                 PlayerPrefs.SetInt("objetoTrofeoGold1Activo", 1);
                                 if (checkTrofeo1 != null) checkTrofeo1.SetActive(true);
                                 if (objetoconTrofeo1 != null) objetoconTrofeo1.SetActive(true);
-                                PlayerPrefs.SetInt("fence1Destruida", 1);
                             }
                             break;
                         case 2:
@@ -231,8 +204,7 @@ public class gameManager : MonoBehaviour
                             if (checklvl2 != null) checklvl2.SetActive(true);
                             if (objetoConLlave2 != null) objetoConLlave2.SetActive(true);
                             PlayerPrefs.SetInt("fence2Destruida", 1);
-
-
+                            
                             if (progress.time <= 20)
                             {
                                 trofeogoldnivel2 = true;
@@ -252,7 +224,7 @@ public class gameManager : MonoBehaviour
 
                             if (progress.time <= 20)
                             {
-                                trofeogoldnivel1 = true;
+                                trofeogoldnivel3 = true;
                                 PlayerPrefs.SetInt("trofeogoldnivel3", 1);
                                 PlayerPrefs.SetInt("objetoTrofeoGold3Activo", 1);
                                 if (checkTrofeo3 != null) checkTrofeo3.SetActive(true);
@@ -297,6 +269,44 @@ public class gameManager : MonoBehaviour
         PlayerPrefs.Save();
     }
 
+    public void ResetProgress()
+    {
+        // Reset all progress variables
+        nivel1Completo = false;
+        nivel2Completo = false;
+        nivel3Completo = false;
+        trofeobroncenivel1 = false;
+        trofeoplatanivel1 = false;
+        trofeogoldnivel1 = false;
+        trofeobroncenivel2 = false;
+        trofeoplatanivel2 = false;
+        trofeogoldnivel2 = false;
+        trofeobroncenivel3 = false;
+        trofeoplatanivel3 = false;
+        trofeogoldnivel3 = false;
+        llaves = 0;
+        jugadorPosicion = Vector3.zero;
+        
+        // Reset UI elements if they exist
+        if (checklvl1 != null) checklvl1.SetActive(false);
+        if (checklvl2 != null) checklvl2.SetActive(false);
+        if (checklvl3 != null) checklvl3.SetActive(false);
+        
+        if (objetoConLlave1 != null) objetoConLlave1.SetActive(false);
+        if (objetoConLlave2 != null) objetoConLlave2.SetActive(false);
+        if (objetoConLlave3 != null) objetoConLlave3.SetActive(false);
+        
+        if (checkTrofeo1 != null) checkTrofeo1.SetActive(false);
+        if (checkTrofeo2 != null) checkTrofeo2.SetActive(false);
+        if (checkTrofeo3 != null) checkTrofeo3.SetActive(false);
+        
+        if (objetoconTrofeo1 != null) objetoconTrofeo1.SetActive(false);
+        if (objetoconTrofeo2 != null) objetoconTrofeo2.SetActive(false);
+        if (objetoconTrofeo3 != null) objetoconTrofeo3.SetActive(false);
+        
+        Debug.Log("🔄 GameManager progress has been reset");
+    }
+
     private void OnApplicationQuit()
     {
 #if UNITY_EDITOR
@@ -306,4 +316,5 @@ public class gameManager : MonoBehaviour
         Debug.Log("Progreso borrado al salir del simulador de Unity.");
 #endif
     }
+    
 }

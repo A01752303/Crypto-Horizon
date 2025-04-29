@@ -336,10 +336,11 @@ public class SceneM : MonoBehaviour
         {
             Debug.LogWarning("❌ No hay datos válidos para guardar sesión.");
         }
-        SceneManager.LoadScene(0);
-        PlayerPrefs.DeleteKey("LastUserId");
-        PlayerPrefs.DeleteKey("LastSessionStart");
+        PlayerPrefs.DeleteAll();
+        gameManager.Instance.ResetProgress();
         PlayerPrefs.Save();
+        gameManager.Instance = null;
+        SceneManager.LoadScene(0);
         Debug.Log("🚪 Logging out");
         uiDocument.rootVisualElement.style.display = DisplayStyle.Flex;
     }

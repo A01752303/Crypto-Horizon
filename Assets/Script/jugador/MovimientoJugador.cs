@@ -15,8 +15,8 @@ public class MovimientoJugador : MonoBehaviour
     void Update()
     {
         // Obtener la entrada del jugador para moverlo
-        input.x = Input.GetAxis("Horizontal");
-        input.y = Input.GetAxis("Vertical");
+        input.x = Input.GetAxisRaw("Horizontal");
+        input.y = Input.GetAxisRaw("Vertical");
         input.Normalize();
 
         // Solo guardar la posición cuando el jugador se mueva
