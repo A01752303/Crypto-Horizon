@@ -337,7 +337,10 @@ public class SceneM : MonoBehaviour
             Debug.LogWarning("❌ No hay datos válidos para guardar sesión.");
         }
         PlayerPrefs.DeleteAll();
-        gameManager.Instance.ResetProgress();
+        if (gameManager.Instance != null)
+        {
+            gameManager.Instance.ResetProgress();
+        }
         PlayerPrefs.Save();
         gameManager.Instance = null;
         SceneManager.LoadScene(0);

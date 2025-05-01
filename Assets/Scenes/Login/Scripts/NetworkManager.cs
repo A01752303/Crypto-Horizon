@@ -85,6 +85,21 @@ public class NetworkManager : MonoBehaviour
         public List<progress> progress;
     }
 
+    [Serializable]
+    public class LeaderboardResponse : Response
+    {
+        public List<LeaderboardEntry> leaderboard;
+    }
+
+    [Serializable]
+    public class LeaderboardEntry
+    {
+        public int Ranking;
+        public string Username;
+        public int TotalScore;
+        public int TotalTime;
+    }
+
     // ✅ Guardar progreso del jugador
     public void saveLevelCompleted(int id_usuario, int level_id, int aciertos, float tiempo_finalizacion, Action<Response> callback)
     {
@@ -182,6 +197,40 @@ public class NetworkManager : MonoBehaviour
         form.AddField("id_usuario", userId);
 
         StartCoroutine(SendProgressRequest("https://www.cryptohorizongame.org/getUserProgress", form, callback));
+    }
+
+    public void GetLeaderboard(Action<LeaderboardResponse> callback)
+    {
+        StartCoroutine(SendLeaderboardRequest("https://www.cryptohorizongame.org/generateLeaderboard", "", callback));
+    }
+
+    private IEnumerator SendLeaderboardRequest(string url, string json, Action<LeaderboardResponse> callback)
+    {
+        using UnityWebRequest request = new UnityWebRequest(url, "GET");
+        byte[] bodyRaw = System.Text.Encoding.UTF8.GetBytes(json);
+        request.uploadHandler = new UploadHandlerRaw(bodyRaw);
+        request.downloadHandler = new DownloadHandlerBuffer();
+        request.SetRequestHeader("Content-Type", "application/json");
+
+        yield return request.SendWebRequest();
+
+        if (request.result != UnityWebRequest.Result.Success)
+        {
+            Debug.LogError("❌ Error en la petición: " + request.error);
+            yield break;
+        }
+
+        string responseText = request.downloadHandler.text;
+        Debug.Log("📨 Respuesta del servidor: " + responseText);
+
+        if (string.IsNullOrEmpty(responseText) || !responseText.Trim().StartsWith("{"))
+        {
+            Debug.LogError("⚠️ La respuesta no es JSON válido");
+            yield break;
+        }
+
+        LeaderboardResponse parsed = JsonUtility.FromJson<LeaderboardResponse>(responseText);
+        callback?.Invoke(parsed);
     }
 
     private IEnumerator SendProgressRequest(string url, WWWForm form, Action<ProgressResponse> callback)
