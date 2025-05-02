@@ -1,7 +1,6 @@
 using UnityEngine;
 using TMPro;
 using System.Runtime.CompilerServices;
-using UnityEditor.SearchService;
 
 public class gameManager : MonoBehaviour
 {
@@ -203,6 +202,7 @@ public class gameManager : MonoBehaviour
                             PlayerPrefs.SetInt("objetoLlave2Activo", 1);
                             if (checklvl2 != null) checklvl2.SetActive(true);
                             if (objetoConLlave2 != null) objetoConLlave2.SetActive(true);
+                            PlayerPrefs.SetInt("fence1Destruida", 1);
                             PlayerPrefs.SetInt("fence2Destruida", 1);
                             
                             if (progress.time <= 20)
@@ -229,6 +229,8 @@ public class gameManager : MonoBehaviour
                                 PlayerPrefs.SetInt("objetoTrofeoGold3Activo", 1);
                                 if (checkTrofeo3 != null) checkTrofeo3.SetActive(true);
                                 if (objetoconTrofeo3 != null) objetoconTrofeo3.SetActive(true);
+                                PlayerPrefs.SetInt("fence1Destruida", 1);
+                                PlayerPrefs.SetInt("fence2Destruida", 1);
                             }
                             break;
                     }
