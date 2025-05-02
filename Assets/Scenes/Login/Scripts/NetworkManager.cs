@@ -283,36 +283,9 @@ public class NetworkManager : MonoBehaviour
         callback?.Invoke(parsed);
     }
 
-    // Opens a URL in an external browser or makes a simple GET request
-    public void ReloadPage(bool useWebRequest = false)
+    public void ReloadPage()
     {
-        if (useWebRequest)
-        {
-            // Use UnityWebRequest for a GET request without opening browser
-            StartCoroutine(SendSimpleGetRequest("https://www.cryptohorizongame.org/recargarPagina"));
-        }
-        else
-        {
-            // Open URL in default browser
-            Application.OpenURL("https://www.cryptohorizongame.org/recargarPagina");
-        }
-    }
-
-    // Simple GET request without expecting JSON or callback
-    private IEnumerator SendSimpleGetRequest(string url)
-    {
-        using (UnityWebRequest request = UnityWebRequest.Get(url))
-        {
-            yield return request.SendWebRequest();
-
-            if (request.result != UnityWebRequest.Result.Success)
-            {
-                Debug.LogError($"❌ Error en la petición GET a {url}: {request.error}");
-            }
-            else
-            {
-                Debug.Log($"✅ Petición GET a {url} completada con éxito");
-            }
-        }
-    }
+        // Enviar un mensaje al navegador
+        Application.ExternalEval("recargarGame();");
+    }
 }
