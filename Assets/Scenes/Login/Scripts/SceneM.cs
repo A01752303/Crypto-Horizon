@@ -343,7 +343,7 @@ public class SceneM : MonoBehaviour
         }
         PlayerPrefs.Save();
         Debug.Log("🚪 Logging out");
-        Application.OpenURL("https://www.cryptohorizongame.org/recargarPagina");
+        NetworkManager.Instance.ReloadPage();
     }
 }
 
