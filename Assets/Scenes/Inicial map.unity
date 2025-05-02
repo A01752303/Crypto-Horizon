@@ -41784,6 +41784,7 @@ GameObject:
   - component: {fileID: 1237516468}
   - component: {fileID: 1237516470}
   - component: {fileID: 1237516469}
+  - component: {fileID: 1237516471}
   m_Layer: 0
   m_Name: house04
   m_TagString: Untagged
@@ -41930,6 +41931,44 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!19719996 &1237516471
+TilemapCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1237516467}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0, y: 0}
+  m_MaximumTileChangeCount: 1000
+  m_ExtrusionFactor: 0
+  m_UseDelaunayMesh: 0
 --- !u!1 &1245736213
 GameObject:
   m_ObjectHideFlags: 0
@@ -44748,7 +44787,6 @@ MonoBehaviour:
   cinemachine: {fileID: 1269354731}
   camera2: {fileID: 705967684}
   camera3: {fileID: 1400725245}
-  gameManager: {fileID: 1382920497}
 --- !u!1 &1608964052
 GameObject:
   m_ObjectHideFlags: 0
