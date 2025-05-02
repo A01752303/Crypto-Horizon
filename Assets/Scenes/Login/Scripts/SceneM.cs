@@ -342,10 +342,8 @@ public class SceneM : MonoBehaviour
             gameManager.Instance.ResetProgress();
         }
         PlayerPrefs.Save();
-        gameManager.Instance = null;
-        SceneManager.LoadScene(0);
         Debug.Log("🚪 Logging out");
-        uiDocument.rootVisualElement.style.display = DisplayStyle.Flex;
+        Application.OpenURL("https://www.cryptohorizongame.org/recargarPagina");
     }
 }
 
