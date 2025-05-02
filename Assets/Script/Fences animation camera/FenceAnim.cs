@@ -35,9 +35,13 @@ public class FenceAnim : MonoBehaviour
             {
                 StartCoroutine(CambiarCamarasConDelay(1.5f, 1));
             }
-            else if (gameManager.nivel1Completo && gameManager.nivel2Completo && !fence2Destruida)
+            if (gameManager.nivel1Completo && gameManager.nivel2Completo && !fence2Destruida)
             {
                 StartCoroutine(CambiarCamarasConDelay(1.5f, 2));
+            }
+            if (gameManager.nivel1Completo && gameManager.nivel2Completo && !fence1Destruida)
+            {
+                StartCoroutine(CambiarCamarasConDelay(1.5f, 1));
             }
         }
         else

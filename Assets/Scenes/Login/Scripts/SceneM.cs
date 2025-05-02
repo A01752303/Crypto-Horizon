@@ -324,13 +324,13 @@ public class SceneM : MonoBehaviour
         }
     }
 
-    public void logOut()
+    public IEnumerator logOut()
     {
         Debug.Log($"🛑 Saliendo con ID: {currentUserId}, Start: {sessionStartTime}");
         if (currentUserId != 0 && !string.IsNullOrEmpty(sessionStartTime))
         {
             string endTime = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
-            StartCoroutine(SaveSessionBeforeExit(currentUserId, sessionStartTime, endTime));
+            yield return SaveSessionBeforeExit(currentUserId, sessionStartTime, endTime);
         }
         else
         {
@@ -344,6 +344,6 @@ public class SceneM : MonoBehaviour
         PlayerPrefs.Save();
         Debug.Log("🚪 Logging out");
         NetworkManager.Instance.ReloadPage();
-    }
+    }
 }
 

@@ -16,9 +16,9 @@ public class menuscene : MonoBehaviour
     {     
         if (SceneM.Instance != null)
         {
-            SceneM.Instance.logOut();
-        }
-    }
+            StartCoroutine(SceneM.Instance.logOut());
+        }
+    }
 
     public void link(string url)
     {
