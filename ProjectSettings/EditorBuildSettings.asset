@@ -35,6 +35,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/nivel3/quiz.unity
     guid: 3db9614da678d224e8bb2ff2050452ee
+  - enabled: 1
+    path: Assets/Scenes/final scene.unity
+    guid: a929805cd152655478f069db108ff172
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   m_UseUCBPForAssetBundles: 0
