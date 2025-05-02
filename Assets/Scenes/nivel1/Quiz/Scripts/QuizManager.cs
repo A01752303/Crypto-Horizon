@@ -225,36 +225,48 @@ public class QuizManager : MonoBehaviour
         float elapsedTime = timeInSeconds - currentTime;
         completionTime = elapsedTime;
 
-    // Obtener el nivel actual usando la función GetCurrentLevel
-    int currentLevel = GetCurrentLevel();
+        // Obtener el nivel actual usando la función GetCurrentLevel
+        int currentLevel = GetCurrentLevel();
 
-    // Referencias a los trofeos según el nivel
-    ref bool bronce = ref gameManager.Instance.trofeobroncenivel1;
-    ref bool plata = ref gameManager.Instance.trofeoplatanivel1;
-    ref bool oro = ref gameManager.Instance.trofeogoldnivel1;
+        // Set the animation flag if it's a first-time completion
+        if (currentLevel == 1 && !gameManager.Instance.nivel1Completo)
+        {
+            PlayerPrefs.SetInt("playFence1Animation", 1);
+            PlayerPrefs.Save();
+        }
+        else if (currentLevel == 2 && !gameManager.Instance.nivel2Completo)
+        {
+            PlayerPrefs.SetInt("playFence2Animation", 1);
+            PlayerPrefs.Save();
+        }
+
+        // Referencias a los trofeos según el nivel
+        ref bool bronce = ref gameManager.Instance.trofeobroncenivel1;
+        ref bool plata = ref gameManager.Instance.trofeoplatanivel1;
+        ref bool oro = ref gameManager.Instance.trofeogoldnivel1;
 
     // Verificar el nivel actual y asignar los trofeos correspondientes
-    switch (currentLevel)
-    {
-        case 1:
-            bronce = ref gameManager.Instance.trofeobroncenivel1;
-            plata = ref gameManager.Instance.trofeoplatanivel1;
-            oro = ref gameManager.Instance.trofeogoldnivel1;
-            break;
-        case 2:
-            bronce = ref gameManager.Instance.trofeobroncenivel2;
-            plata = ref gameManager.Instance.trofeoplatanivel2;
-            oro = ref gameManager.Instance.trofeogoldnivel2;
-            break;
-        case 3:
-            bronce = ref gameManager.Instance.trofeobroncenivel3;
-            plata = ref gameManager.Instance.trofeoplatanivel3;
-            oro = ref gameManager.Instance.trofeogoldnivel3;
-            break;
-        default:
-            // Si no estamos en un nivel válido, no se asignan trofeos
-            break;
-    }
+        switch (currentLevel)
+        {
+            case 1:
+                bronce = ref gameManager.Instance.trofeobroncenivel1;
+                plata = ref gameManager.Instance.trofeoplatanivel1;
+                oro = ref gameManager.Instance.trofeogoldnivel1;
+                break;
+            case 2:
+                bronce = ref gameManager.Instance.trofeobroncenivel2;
+                plata = ref gameManager.Instance.trofeoplatanivel2;
+                oro = ref gameManager.Instance.trofeogoldnivel2;
+                break;
+            case 3:
+                bronce = ref gameManager.Instance.trofeobroncenivel3;
+                plata = ref gameManager.Instance.trofeoplatanivel3;
+                oro = ref gameManager.Instance.trofeogoldnivel3;
+                break;
+            default:
+                // Si no estamos en un nivel válido, no se asignan trofeos
+                break;
+        }
 
 
         ActualizarTrofeo(ref bronce, ref plata, ref oro, elapsedTime);
