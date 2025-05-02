@@ -18,36 +18,16 @@ public class FenceAnim : MonoBehaviour
     {
         gameManager = FindFirstObjectByType<gameManager>();
 
-        // Check if we should play a first-time completion animation
-        bool shouldPlayFirstTimeFence1Anim = PlayerPrefs.GetInt("playFence1Animation", 0) == 1;
-        bool shouldPlayFirstTimeFence2Anim = PlayerPrefs.GetInt("playFence2Animation", 0) == 1;
-        
-
         // Revisar estado guardado de destrucción
         bool fence1Destruida = PlayerPrefs.GetInt("fence1Destruida", 0) == 1;
         bool fence2Destruida = PlayerPrefs.GetInt("fence2Destruida", 0) == 1;
 
-        if (shouldPlayFirstTimeFence1Anim)
-        {
-            StartCoroutine(CambiarCamarasConDelay(1.5f, 1));
-            PlayerPrefs.SetInt("playFence1Animation", 0); // Reset the flag
-            PlayerPrefs.Save();
-        }
-        else if (shouldPlayFirstTimeFence2Anim)
-        {
-            StartCoroutine(CambiarCamarasConDelay(1.5f, 2));
-            PlayerPrefs.SetInt("playFence2Animation", 0); // Reset the flag
-            PlayerPrefs.Save();
-        }
-        else
-        {
-            // Si ya estaba destruida, ocultarla
-            if (fence1Destruida && fenceObject1 != null)
-                fenceObject1.SetActive(false);
+        // Si ya estaba destruida, ocultarla
+        if (fence1Destruida && fenceObject1 != null)
+            fenceObject1.SetActive(false);
 
-            if (fence2Destruida && fenceObject2 != null)
-                fenceObject2.SetActive(false);
-        }
+        if (fence2Destruida && fenceObject2 != null)
+            fenceObject2.SetActive(false);
 
         if (gameManager != null)
         {

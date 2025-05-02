@@ -56,5 +56,5 @@
         "temp/": true,
         "Temp/": true
     },
-    "dotnet.defaultSolution": "Crypto-Horizon.sln"
+    "dotnet.defaultSolution": "Crypto-Horizon-main.sln"
 }

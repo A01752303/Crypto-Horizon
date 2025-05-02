@@ -168,8 +168,6 @@ public class gameManager : MonoBehaviour
     private void CargarProgresoBD()
     {
         int userId = SceneM.Instance.currentUserId;
-        PlayerPrefs.SetInt("fence1Destruida", 0);
-        PlayerPrefs.SetInt("fence2Destruida", 0);
         NetworkManager.Instance.LoadUserProgress(SceneM.Instance.currentUserId, response =>
         {
 
