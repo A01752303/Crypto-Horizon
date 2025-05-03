@@ -6,17 +6,23 @@ public class menuscene : MonoBehaviour
 {
     public Animator transition;
     private float transitionTime = 1f;
+
     [SerializeField] private AudioClip buttonClickSound; 
     private AudioSource audioSource;
+
+    [SerializeField] private GameObject MainMenu;
+    [SerializeField] private GameObject Leaderboard;
+    [SerializeField] private GameObject About;
+
     private void Start()
     {
-        // Get or add an AudioSource component
         audioSource = GetComponent<AudioSource>();
         if (audioSource == null)
         {
             audioSource = gameObject.AddComponent<AudioSource>();
         }
     }
+
     public void play()
     {
         PlayButtonSound(); 
@@ -25,30 +31,39 @@ public class menuscene : MonoBehaviour
 
     public void leaderboard()
     {
-        PlayButtonSound(); 
+        StartCoroutine(PlaySoundThen(() =>
+        {
+            MainMenu.SetActive(false);
+            Leaderboard.SetActive(true);
+        }));
     }
 
     public void about()
     {
-        PlayButtonSound(); 
+        StartCoroutine(PlaySoundThen(() =>
+        {
+            MainMenu.SetActive(false);
+            About.SetActive(true);
+        }));
     }
 
     public void exit()
-    {     
-        PlayButtonSound(); 
-        if (SceneM.Instance != null)
+    {
+        StartCoroutine(PlaySoundThen(() =>
         {
-            StartCoroutine(SceneM.Instance.logOut());
-        }
-    }
+            if (SceneM.Instance != null)
+            {
+                StartCoroutine(SceneM.Instance.logOut());
+            }
+        }));
+    }
 
     public void link(string url)
     {
-        PlayButtonSound(); 
-        Application.OpenURL(url);
+        Application.OpenURL(url); 
     }
 
-    private void PlayButtonSound()
+    public void PlayButtonSound()
     {
         if (buttonClickSound != null && audioSource != null)
         {
@@ -65,5 +80,16 @@ public class menuscene : MonoBehaviour
         }
 
         SceneManager.LoadScene(levelIndex);
+    }
+
+    private IEnumerator PlaySoundThen(System.Action action)
+    {
+        if (buttonClickSound != null && audioSource != null)
+        {
+            audioSource.PlayOneShot(buttonClickSound);
+            yield return new WaitForSeconds(buttonClickSound.length);
+        }
+
+        action?.Invoke();
     }
 }
