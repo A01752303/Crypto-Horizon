@@ -8,7 +8,19 @@ public class WinningPage : MonoBehaviour
     public Animator transition;
     private float transitionTime = 1f;
     private Button button;
+    [SerializeField] private AudioClip buttonClickSound; 
+    private AudioSource audioSource;
 
+    private void Start()
+    {
+    audioSource = GetComponent<AudioSource>();
+
+    if (audioSource == null)
+        {
+        audioSource = gameObject.AddComponent<AudioSource>();
+        audioSource.playOnAwake = false;
+        }
+    }
     public void ActivateButton()
     {
         GameObject canvasObj = GameObject.Find("UI button"); // nombre del Canvas
@@ -33,7 +45,16 @@ public class WinningPage : MonoBehaviour
 
     public void LoadLevel()
     {
+        PlayButtonSound();
         StartCoroutine(RegresarMenu());
+    }
+
+    public void PlayButtonSound()
+    {
+        if (buttonClickSound != null && audioSource != null)
+        {
+            audioSource.PlayOneShot(buttonClickSound);
+        }
     }
 
     private IEnumerator RegresarMenu()

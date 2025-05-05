@@ -23,6 +23,11 @@ public class QuizGameUI : MonoBehaviour
     [SerializeField] private Text questionInfoText;  
     [SerializeField] private List<Button> options;   
     [SerializeField] private int optionFontSize = 24;               // Tamaño de texto de las opciones
+    [SerializeField] private AudioSource sfxSource;
+    [SerializeField] private AudioClip correctSound;
+    [SerializeField] private AudioClip incorrectSound;
+
+
     public Animator transition;    
 
     [SerializeField] private Text questionCounterText;              // NUEVO: Texto para mostrar el contador de preguntas tipo "1/10"
@@ -115,24 +120,32 @@ public class QuizGameUI : MonoBehaviour
     }
 
     void OnClick(Button btn)
+{
+    if (quizManager.GameStatus == GameStatus.PLAYING)
     {
-        if (quizManager.GameStatus == GameStatus.PLAYING)
+        if (!answered)
         {
-            if (!answered)
+            answered = true;
+            bool val = quizManager.Answer(btn.name);
+
+            if (val)
             {
-                answered = true;
-                bool val = quizManager.Answer(btn.name);
-                if (val)
-                {
-                    StartCoroutine(BlinkImg(btn.image));
-                }
-                else
-                {
-                    btn.image.color = wrongCol;
-                }
+                if (sfxSource && correctSound)
+                    sfxSource.PlayOneShot(correctSound);
+
+                StartCoroutine(BlinkImg(btn.image));
+            }
+            else
+            {
+                if (sfxSource && incorrectSound)
+                    sfxSource.PlayOneShot(incorrectSound);
+
+                btn.image.color = wrongCol;
             }
         }
     }
+}
+
 
     void CreateCategoryButtons()
     {

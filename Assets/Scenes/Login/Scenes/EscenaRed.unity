@@ -249,6 +249,7 @@ GameObject:
   - component: {fileID: 274286888}
   - component: {fileID: 274286889}
   - component: {fileID: 274286890}
+  - component: {fileID: 274286891}
   m_Layer: 5
   m_Name: UIRed
   m_TagString: Untagged
@@ -333,6 +334,20 @@ MonoBehaviour:
   networkManager: {fileID: 274286889}
   currentUserId: 0
   sessionStartTime: 
+--- !u!114 &274286891
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 274286884}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 89d71c0ff5d1e8148883bb2b18cdac6f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  uiDocument: {fileID: 274286885}
+  clickSound: {fileID: 8300000, guid: 60865ed1afbe64b6c8ba93c611861637, type: 3}
 --- !u!1001 &385299649
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -695,7 +710,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2659024288419603215, guid: 538b2428598147f4b94d4bcb97f55a05, type: 3}
       propertyPath: m_Volume
-      value: 0.5
+      value: 0.25
       objectReference: {fileID: 0}
     - target: {fileID: 7379882136214363880, guid: 538b2428598147f4b94d4bcb97f55a05, type: 3}
       propertyPath: m_LocalPosition.x

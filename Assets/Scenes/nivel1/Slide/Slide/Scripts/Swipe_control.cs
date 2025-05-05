@@ -11,8 +11,15 @@ public class SwipeControl : MonoBehaviour
     private int posisi = 0;
     private bool isDragging = false; // Detecta si el usuario está moviendo manualmente
 
+    [SerializeField] private AudioClip buttonClickSound; 
+    private AudioSource audioSource;
     void Start()
     {
+        audioSource = GetComponent<AudioSource>();
+        if (audioSource == null)
+        {
+            audioSource = gameObject.AddComponent<AudioSource>();
+        }
         pos = new float[transform.childCount];
         float distance = 1f / (pos.Length - 1f);
 
@@ -24,6 +31,7 @@ public class SwipeControl : MonoBehaviour
 
     public void Next()
     {
+        PlayButtonSound();
         if (posisi < pos.Length - 1)
         {
             posisi += 1;
@@ -33,6 +41,7 @@ public class SwipeControl : MonoBehaviour
 
     public void Prev()
     {
+        PlayButtonSound();
         if (posisi > 0)
         {
             posisi -= 1;
@@ -75,5 +84,12 @@ public class SwipeControl : MonoBehaviour
         // Fijar la diapositiva en la posición más cercana
         posisi = closestIndex;
         scrollbar.GetComponent<Scrollbar>().value = pos[posisi];
+    }
+    public void PlayButtonSound()
+    {
+        if (buttonClickSound != null && audioSource != null)
+        {
+            audioSource.PlayOneShot(buttonClickSound);
+        }
     }
 }

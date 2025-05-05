@@ -9,8 +9,23 @@ public class pauseMenuLevels : MonoBehaviour
 
     public Animator transition;
 
+    [SerializeField] private AudioClip buttonClickSound; 
+    private AudioSource audioSource;
+
+    private void Start()
+    {
+    audioSource = GetComponent<AudioSource>();
+
+    if (audioSource == null)
+        {
+        audioSource = gameObject.AddComponent<AudioSource>();
+        audioSource.playOnAwake = false;
+        }
+    }
+
     public void Pause()
     {
+        PlayButtonSound();
         pauseMenuUI.SetActive(true);
         Time.timeScale = 0f;
         pauseButton.SetActive(false);
@@ -18,6 +33,7 @@ public class pauseMenuLevels : MonoBehaviour
 
     public void Continue()
     {
+        PlayButtonSound();
         pauseMenuUI.SetActive(false);
         Time.timeScale = 1f;
         pauseButton.SetActive(true);
@@ -25,6 +41,7 @@ public class pauseMenuLevels : MonoBehaviour
 
     public void BackToIslands()
     {
+        PlayButtonSound();
         Time.timeScale = 1f;
         StartCoroutine(LoadLevel(2));
     }
@@ -33,6 +50,14 @@ public class pauseMenuLevels : MonoBehaviour
     {
         Time.timeScale = 1f;
         StartCoroutine(LoadLevel(1));
+    }
+
+    public void PlayButtonSound()
+    {
+        if (buttonClickSound != null && audioSource != null)
+        {
+            audioSource.PlayOneShot(buttonClickSound);
+        }
     }
 
     IEnumerator LoadLevel(int levelIndex)
